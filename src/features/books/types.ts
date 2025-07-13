@@ -1,0 +1,1 @@
+export type BookStatus = "reading" | "want_to_read" | "read";
