@@ -80,25 +80,6 @@ export default async function DetailBookRoute({
                 </Badge>
               ))}
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <p className="text-sm text-muted-foreground">Started</p>
-                <p>
-                  {book.startedAt
-                    ? new Date(book.startedAt).toLocaleDateString()
-                    : "—"}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Finished</p>
-                <p>
-                  {book.finishedAt
-                    ? new Date(book.finishedAt).toLocaleDateString()
-                    : "—"}
-                </p>
-              </div>
-            </div>
           </div>
         </CardContent>
       </Card>
