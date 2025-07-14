@@ -9,13 +9,11 @@ import {
 import { getReviewById } from "@/features/bookReviews/queries";
 import { BookReviewEditForm } from "@/features/bookReviews/components/BookReviewEditForm";
 
-interface EditReviewPageProps {
-  params: Promise<{
-    id: string;
-  }>;
-}
-
-export default async function EditReviewPage({ params }: EditReviewPageProps) {
+export default async function EditReviewPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   const review = await getReviewById(id);
 

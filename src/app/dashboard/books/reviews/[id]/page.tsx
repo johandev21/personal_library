@@ -8,14 +8,12 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getReviewById } from "@/features/bookReviews/queries";
 
-interface ReviewDetailPageProps {
-  params: Promise<{
-    id: string;
-  }>;
-}
-
-export default async function ReviewDetailPage({ params }: ReviewDetailPageProps) {
-  const { id } = await params
+export default async function ReviewDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const review = await getReviewById(id);
 
   if (!review) {
@@ -71,10 +69,12 @@ export default async function ReviewDetailPage({ params }: ReviewDetailPageProps
 
       <div className="mt-12 pt-6 border-t text-sm text-muted-foreground flex justify-between">
         <span>
-          <strong>Created:</strong> {format(new Date(review.createdAt), "MMMM d, yyyy")}
+          <strong>Created:</strong>{" "}
+          {format(new Date(review.createdAt), "MMMM d, yyyy")}
         </span>
         <span>
-          <strong>Last Updated:</strong> {format(new Date(review.updatedAt), "MMMM d, yyyy 'at' h:mm a")}
+          <strong>Last Updated:</strong>{" "}
+          {format(new Date(review.updatedAt), "MMMM d, yyyy 'at' h:mm a")}
         </span>
       </div>
     </main>

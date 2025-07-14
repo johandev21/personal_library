@@ -9,13 +9,11 @@ import {
 import { getBookById } from "@/features/books/queries";
 import { BookEditForm } from "@/features/books/components/BookEditForm";
 
-interface EditBookPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function EditBookPage({ params }: EditBookPageProps) {
+export default async function EditBookPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   const book = await getBookById(id);
 

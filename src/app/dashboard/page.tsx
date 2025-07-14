@@ -50,84 +50,82 @@ export default async function DashboardPage() {
       </section>
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-  {/* "Currently Reading" Card */}
-  <Card>
-    <CardHeader className="flex items-center justify-between">
-      <CardTitle>Currently Reading</CardTitle>
-      <Button asChild variant="ghost" size="sm">
-        <Link href="/dashboard/books">
-          View All <ArrowRight className="ml-2 h-4 w-4" />
-        </Link>
-      </Button>
-    </CardHeader>
-    <CardContent className="overflow-x-auto">
-      {currentlyReading.length > 0 ? (
-        <div className="space-y-4">
-          {currentlyReading.map((book) => (
-            <Link
-              href={`/dashboard/books/${book.id}`}
-              key={book.id}
-              className="flex items-center gap-4 p-2 rounded-lg hover:bg-muted min-w-0"
-            >
-              <Image
-                src={book.cover || "/placeholder.svg"}
-                alt={book.title}
-                width={40}
-                height={60}
-                className="rounded-md aspect-[2/3] object-cover flex-shrink-0"
-              />
-              <div className="min-w-0">
-                <p className="font-semibold truncate">{book.title}</p>
-                <p className="text-sm text-muted-foreground truncate">
-                  {book.author}
-                </p>
+        <Card>
+          <CardHeader className="flex items-center justify-between">
+            <CardTitle>Currently Reading</CardTitle>
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/dashboard/books">
+                View All <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </CardHeader>
+          <CardContent className="overflow-x-auto">
+            {currentlyReading.length > 0 ? (
+              <div className="space-y-4">
+                {currentlyReading.map((book) => (
+                  <Link
+                    href={`/dashboard/books/${book.id}`}
+                    key={book.id}
+                    className="flex items-center gap-4 p-2 rounded-lg hover:bg-muted min-w-0"
+                  >
+                    <Image
+                      src={book.cover || "/placeholder.svg"}
+                      alt={book.title}
+                      width={40}
+                      height={60}
+                      className="rounded-md aspect-[2/3] object-cover flex-shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <p className="font-semibold truncate">{book.title}</p>
+                      <p className="text-sm text-muted-foreground truncate">
+                        {book.author}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
               </div>
-            </Link>
-          ))}
-        </div>
-      ) : (
-        <p className="text-sm text-muted-foreground text-center py-8">
-          No books currently being read.
-        </p>
-      )}
-    </CardContent>
-  </Card>
-
-  {/* "Recent Reviews" Card */}
-  <Card>
-    <CardHeader className="flex items-center justify-between">
-      <CardTitle>Recent Reviews</CardTitle>
-      <Button asChild variant="ghost" size="sm">
-        <Link href="/dashboard/books/reviews">
-          View All <ArrowRight className="ml-2 h-4 w-4" />
-        </Link>
-      </Button>
-    </CardHeader>
-    <CardContent className="overflow-x-auto">
-      {recentReviews.length > 0 ? (
-        <div className="space-y-4">
-          {recentReviews.map((review) => (
-            <Link
-              href={`/dashboard/books/reviews/${review.id}`}
-              key={review.id}
-              className="flex flex-col p-2 rounded-lg hover:bg-muted min-w-0"
-            >
-              <p className="font-semibold truncate">{review.title}</p>
-              <p className="text-sm text-muted-foreground truncate">
-                For “{review.book.title}”
+            ) : (
+              <p className="text-sm text-muted-foreground text-center py-8">
+                No books currently being read.
               </p>
-            </Link>
-          ))}
-        </div>
-      ) : (
-        <p className="text-sm text-muted-foreground text-center py-8">
-          No reviews written yet.
-        </p>
-      )}
-    </CardContent>
-  </Card>
-</div>
+            )}
+          </CardContent>
+        </Card>
 
+        {/* "Recent Reviews" Card */}
+        <Card>
+          <CardHeader className="flex items-center justify-between">
+            <CardTitle>Recent Reviews</CardTitle>
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/dashboard/books/reviews">
+                View All <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </CardHeader>
+          <CardContent className="overflow-x-auto">
+            {recentReviews.length > 0 ? (
+              <div className="space-y-4">
+                {recentReviews.map((review) => (
+                  <Link
+                    href={`/dashboard/books/reviews/${review.id}`}
+                    key={review.id}
+                    className="flex flex-col p-2 rounded-lg hover:bg-muted min-w-0"
+                  >
+                    <p className="font-semibold truncate">{review.title}</p>
+                    <p className="text-sm text-muted-foreground truncate">
+                      For “{review.book.title}”
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-muted-foreground text-center py-8">
+                No reviews written yet.
+              </p>
+            )}
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
