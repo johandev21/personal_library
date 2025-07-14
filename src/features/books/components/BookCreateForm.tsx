@@ -69,7 +69,11 @@ export function BookCreateForm() {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="The Way of Kings" {...field} />
+                    <Input
+                      placeholder="The Way of Kings"
+                      {...field}
+                      autoComplete="off"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -82,7 +86,11 @@ export function BookCreateForm() {
                 <FormItem>
                   <FormLabel>Author</FormLabel>
                   <FormControl>
-                    <Input placeholder="Brandon Sanderson" {...field} />
+                    <Input
+                      placeholder="Brandon Sanderson"
+                      {...field}
+                      autoComplete="off"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -96,7 +104,11 @@ export function BookCreateForm() {
               <FormItem>
                 <FormLabel>Cover Image URL</FormLabel>
                 <FormControl>
-                  <Input placeholder="https://example.com/cover.jpg" {...field} />
+                  <Input
+                    placeholder="https://example.com/cover.jpg"
+                    {...field}
+                    autoComplete="off"
+                  />
                 </FormControl>
                 <FormDescription>
                   Paste the full URL to the book's cover image.
@@ -114,7 +126,10 @@ export function BookCreateForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Status</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select the book's status" />

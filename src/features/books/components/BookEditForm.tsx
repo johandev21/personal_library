@@ -70,7 +70,11 @@ export function BookEditForm({ book }: { book: Book }) {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="The Way of Kings" {...field} />
+                    <Input
+                      placeholder="The Way of Kings"
+                      {...field}
+                      autoComplete="off"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -83,7 +87,11 @@ export function BookEditForm({ book }: { book: Book }) {
                 <FormItem>
                   <FormLabel>Author</FormLabel>
                   <FormControl>
-                    <Input placeholder="Brandon Sanderson" {...field} />
+                    <Input
+                      placeholder="Brandon Sanderson"
+                      {...field}
+                      autoComplete="off"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -100,6 +108,7 @@ export function BookEditForm({ book }: { book: Book }) {
                   <Input
                     placeholder="https://example.com/cover.jpg"
                     {...field}
+                    autoComplete="off"
                   />
                 </FormControl>
                 <FormDescription>
