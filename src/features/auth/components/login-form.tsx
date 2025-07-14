@@ -53,7 +53,7 @@ export function LoginForm({
       if (result?.error) {
         toast.error(result.error);
       } else {
-        router.push("/");
+        router.push("/dashboard");
       }
     } catch (err) {
       console.error("An unexpected network or server error occurred:", err);
@@ -87,6 +87,7 @@ export function LoginForm({
                         placeholder="m@example.com"
                         {...field}
                         disabled={isLoading}
+                        autoComplete="off"
                       />
                     </FormControl>
                     <FormMessage />
@@ -109,7 +110,12 @@ export function LoginForm({
                       </Link>
                     </div>
                     <FormControl>
-                      <Input type="password" {...field} disabled={isLoading} />
+                      <Input
+                        type="password"
+                        {...field}
+                        disabled={isLoading}
+                        autoComplete="off"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -120,20 +126,13 @@ export function LoginForm({
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? "Logging in..." : "Login"}
                 </Button>
-                <Button
-                  variant="outline"
-                  className="w-full"
-                  disabled={isLoading}
-                >
-                  Login with Google
-                </Button>
               </div>
             </form>
           </Form>
 
           <div className="mt-4 text-center text-sm">
             Don't have an account?{" "}
-            <Link href="/signup" className="underline underline-offset-4">
+            <Link href="/signup" className="underline underline-offset-4 hover:text-primary">
               Sign up
             </Link>
           </div>
