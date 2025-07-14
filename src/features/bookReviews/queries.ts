@@ -19,7 +19,7 @@ export const getBookReviews = async (): Promise<ReviewWithBook[]> => {
   }
 };
 
-export const getBookById = async (id: string): Promise<ReviewWithBook | null> => {
+export async function getReviewById(id: string): Promise<ReviewWithBook | null> {
   try {
     const userId = await getAuthenticatedUserId();
     const bookReview = await prisma.bookReview.findUnique({
