@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DeleteBookDialog } from "@/features/books/components/DeleteBookDialog";
 import { getBookById } from "@/features/books/queries";
-import { ArrowLeft, Edit, Trash2 } from "lucide-react";
+import { ArrowLeft, Edit } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -74,7 +74,7 @@ export default async function DetailBookRoute({
             </div>
 
             <div className="flex flex-wrap gap-2">
-              {book.tags.map((tag) => (
+              {book.tags.map((tag: string) => (
                 <Badge key={tag} variant="outline">
                   {tag}
                 </Badge>
