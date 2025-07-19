@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
-import { BookCreateData, bookCreateSchema } from "../schemas";
-import { createBook } from "../actions";
+import { BookCreateData, bookCreateSchema } from "../../schemas";
+import { createBook } from "../../actions";
 
 import {
   Form,
@@ -27,7 +27,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { BookTagsInput } from "./BookTagsInput";
+import { BookTagsInput } from "../BookTagsInput";
 
 export function BookCreateForm() {
   const router = useRouter();

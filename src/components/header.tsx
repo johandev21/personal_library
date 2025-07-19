@@ -11,7 +11,13 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { redirect } from "next/navigation";
+import { ModeToggle } from "./mode-toggle";
 
 const navigationLinks = [
   { href: "/dashboard/books", label: "Books" },
@@ -21,17 +27,45 @@ const navigationLinks = [
 export default async function Header() {
   const session = await auth.api.getSession({ headers: await headers() });
 
+  if (!session) {
+    redirect("/signin");
+  }
+
   return (
-    <header className="border-b px-4 md:px-6">
+    <header className="border-b px-4 md:px-6 bg-card">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-           <Popover>
+          <Popover>
             <PopoverTrigger asChild>
-              <Button className="group size-8 md:hidden" variant="ghost" size="icon">
-                <svg className="pointer-events-none" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg" >
-                  <path d="M4 12L20 12" className="origin-center -translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-x-0 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[315deg]" />
-                  <path d="M4 12H20" className="origin-center transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.8)] group-aria-expanded:rotate-45" />
-                  <path d="M4 12H20" className="origin-center translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[135deg]" />
+              <Button
+                className="group size-8 md:hidden"
+                variant="ghost"
+                size="icon"
+              >
+                <svg
+                  className="pointer-events-none"
+                  width={16}
+                  height={16}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 12L20 12"
+                    className="origin-center -translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-x-0 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[315deg]"
+                  />
+                  <path
+                    d="M4 12H20"
+                    className="origin-center transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.8)] group-aria-expanded:rotate-45"
+                  />
+                  <path
+                    d="M4 12H20"
+                    className="origin-center translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[135deg]"
+                  />
                 </svg>
               </Button>
             </PopoverTrigger>
@@ -40,7 +74,10 @@ export default async function Header() {
                 <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
                   {navigationLinks.map((link, index) => (
                     <NavigationMenuItem key={index} className="w-full">
-                      <NavigationMenuLink href={link.href} className="py-1.5"> {link.label} </NavigationMenuLink>
+                      <NavigationMenuLink href={link.href} className="py-1.5">
+                        {" "}
+                        {link.label}{" "}
+                      </NavigationMenuLink>
                     </NavigationMenuItem>
                   ))}
                 </NavigationMenuList>
@@ -48,12 +85,24 @@ export default async function Header() {
             </PopoverContent>
           </Popover>
           <div className="flex items-center gap-6">
-            <Link href="/dashboard" className="text-primary hover:text-primary/90"> <Logo /> </Link>
+            <Link
+              href="/dashboard"
+              className="text-primary hover:text-primary/90"
+            >
+              {" "}
+              <Logo />{" "}
+            </Link>
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
                   <NavigationMenuItem key={index}>
-                    <Link href={link.href} className="text-muted-foreground hover:text-primary py-1.5 font-medium hover:bg-accent focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 [&_svg:not([class*='text-'])]:text-muted-foreground flex flex-col gap-1 rounded-sm p-2 text-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4" > {link.label} </Link>
+                    <Link
+                      href={link.href}
+                      className="text-muted-foreground py-1.5 font-medium hover:bg-accent focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 [&_svg:not([class*='text-'])]:text-muted-foreground flex flex-col gap-1 rounded-sm p-2 text-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4"
+                    >
+                      {" "}
+                      {link.label}{" "}
+                    </Link>
                   </NavigationMenuItem>
                 ))}
               </NavigationMenuList>
@@ -63,6 +112,7 @@ export default async function Header() {
 
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2"></div>
+          <ModeToggle />
           <UserMenu session={session} />
         </div>
       </div>

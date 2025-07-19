@@ -16,7 +16,7 @@ export async function getAuthenticatedUserId() {
     throw new Error("You must be logged in to create a book.");
   }
 
-  return session.user.id;
+  return session?.user.id;
 }
 
 export const signUp = async (values: z.infer<typeof signupFormSchema>) => {

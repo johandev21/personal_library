@@ -1,10 +1,9 @@
-// You can place this in a new file, e.g., src/features/reviews/components/BookReviewCard.tsx
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
-import { MoreVertical, Edit, Eye, Trash2, Book } from "lucide-react";
+import { MoreVertical, Edit, Trash2, Book } from "lucide-react";
 
 import {
   Card,
@@ -31,14 +30,13 @@ interface BookReviewCardProps {
 export function BookReviewCard({ review }: BookReviewCardProps) {
   return (
     <Card className="relative flex flex-col overflow-hidden rounded-lg shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:bg-card">
-      {/* Actions Menu (Dropdown) */}
       <div className="absolute top-2 right-2 z-10">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 rounded-full bg-black/50 text-white hover:bg-black/70"
+              className="h-8 w-8 rounded-full"
             >
               <MoreVertical className="h-4 w-4" />
               <span className="sr-only">Review Options</span>
@@ -65,7 +63,6 @@ export function BookReviewCard({ review }: BookReviewCardProps) {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DeleteReviewDialog reviewId={review.id}>
-              {/* The Dialog's trigger is this menu item */}
               <DropdownMenuItem
                 onSelect={(e) => e.preventDefault()}
                 className="cursor-pointer"

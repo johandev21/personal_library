@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
-import { BookUpdateData, bookUpdateSchema } from "../schemas";
-import { updateBook } from "../actions";
+import { BookUpdateData, bookUpdateSchema } from "../../schemas";
+import { updateBook } from "../../actions";
 
 import {
   Form,
@@ -27,8 +27,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { BookTagsInput } from "./BookTagsInput";
-import { Book } from "@/generated/prisma/client";
+import { BookTagsInput } from "../BookTagsInput";
+import { Book } from "@prisma/client";
 
 export function BookEditForm({ book }: { book: Book }) {
   const router = useRouter();

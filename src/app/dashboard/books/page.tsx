@@ -1,47 +1,67 @@
-import Link from 'next/link';
-import { PlusCircle } from 'lucide-react';
+import { Suspense } from "react";
+import { Separator } from "@/components/ui/separator";
+import { BookList } from "@/features/books/components/BookList";
+import { BookStats } from "@/features/books/components/BookStats";
+import { BookToolbar } from "@/features/books/components/BookToolbar";
+import { BookPagination } from "@/features/books/components/BookPagination";
+import {
+  getBooks,
+  getFilteredBooks,
+  getBooksTotalPages,
+  getBookTags,
+} from "@/features/books/queries";
+import { BookStates } from "@prisma/client"; 
 
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
+interface BookQueryFilters {
+  query?: string;
+  states?: BookStates | "all"; 
+  tags?: string[];
+}
 
-import { BookList } from '@/features/books/components/BookList';
-import { BookStats } from '@/features/books/components/BookStats';
-import { getBooks } from '@/features/books/queries';
+interface BooksDashboardPageProps {
+  searchParams?: {
+    query?: string;
+    states?: string;
+    tags?: string | string[];
+    view?: "grid" | "list";
+    page?: string;
+  };
+}
 
-// const allTags = Array.from(
-//   new Set(mockBooks.flatMap((book) => book.tags))
-// ).sort();
+export default async function BooksDashboardPage({
+  searchParams,
+}: BooksDashboardPageProps) {
+  const resolvedSearchParams = await searchParams;
 
-export default async function BooksDashboardPage() {
-  const books = await getBooks();
+  const query = resolvedSearchParams?.query || "";
+  const view = resolvedSearchParams?.view || "grid";
+  const currentPage = Number(resolvedSearchParams?.page) || 1;
+  const tags = resolvedSearchParams?.tags
+    ? Array.isArray(resolvedSearchParams.tags)
+      ? resolvedSearchParams.tags
+      : [resolvedSearchParams.tags]
+    : [];
 
-  // const [searchTerm, setSearchTerm] = useState('');
-  // const [statusFilter, setStatusFilter] = useState<BookStatus | 'all'>('all');
-  // const [tagFilter, setTagFilter] = useState<string[]>([]);
-  // const [view, setView] = useState<'grid' | 'list'>('grid');
+  const statesFromUrl = resolvedSearchParams?.states || "all";
+  
+  const validStates = [...Object.values(BookStates), "all"];
+  const states: BookStates | "all" = validStates.includes(
+    statesFromUrl as any
+  )
+    ? (statesFromUrl as BookStates | "all")
+    : "all";
 
-  // const filteredBooks = mockBooks.filter((book) => {
-  //   const searchMatch =
-  //     searchTerm === '' ||
-  //     book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //     book.author.toLowerCase().includes(searchTerm.toLowerCase());
+  const filters: BookQueryFilters = { query, states, tags };
 
-  //   const statusMatch = statusFilter === 'all' || book.states === statusFilter;
+  const [paginatedBooks, totalPages, allTags, allBooksForStats] =
+    await Promise.all([
+      getFilteredBooks(filters, currentPage),
+      getBooksTotalPages(filters),
+      getBookTags(),
+      getBooks(),
+    ]);
 
-  //   const tagMatch =
-  //     tagFilter.length === 0 ||
-  //     tagFilter.every((tag) => book.tags.includes(tag));
-
-  //   return searchMatch && statusMatch && tagMatch;
-  // });
-
-  // const handleTagToggle = (tag: string) => {
-  //   setTagFilter((currentTags) =>
-  //     currentTags.includes(tag)
-  //       ? currentTags.filter((t) => t !== tag)
-  //       : [...currentTags, tag]
-  //   );
-  // };
+  const suspenseKey = [query, states, tags.join(","), currentPage].join("-");
 
   return (
     <div className="flex flex-col gap-8">
@@ -49,48 +69,26 @@ export default async function BooksDashboardPage() {
         <h2 id="dashboard-stats-title" className="sr-only">
           Dashboard Statistics
         </h2>
-        <BookStats books={books} />
+        <BookStats books={allBooksForStats} />
       </section>
 
       <Separator />
 
       <div className="flex flex-col gap-4">
-        <section aria-labelledby="book-filters-title">
-          <h2 id="book-filters-title" className="sr-only">
-            Book Search and Filters
-          </h2>
-          
-          {/* This container will align filters to the left and actions to the right */}
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              {/* <BookFilters
-                searchTerm={searchTerm}
-                onSearchChange={setSearchTerm}
-                statusFilter={statusFilter}
-                onStatusChange={setStatusFilter}
-                allTags={allTags}
-                tagFilter={tagFilter}
-                onTagToggle={handleTagToggle}
-                view={view}
-                onViewChange={setView}
-              /> */}
-            </div>
+        <BookToolbar allTags={allTags} />
 
-            <Button asChild>
-              <Link href="/dashboard/books/create" className="flex items-center gap-2">
-                <PlusCircle className="h-4 w-4" />
-                <span>Add New Book</span>
-              </Link>
-            </Button>
-          </div>
-        </section>
+        <Suspense key={suspenseKey} fallback={<div>Loading books...</div>}>
+          <section aria-labelledby="book-collection-title">
+            <h2 id="book-collection-title" className="sr-only">
+              Book Collection
+            </h2>
+            <BookList books={paginatedBooks} view={view} />
+          </section>
+        </Suspense>
 
-        <section aria-labelledby="book-collection-title">
-          <h2 id="book-collection-title" className="sr-only">
-            Book Collection
-          </h2>
-          <BookList books={books} view="list" />
-        </section>
+        <div className="mt-4 flex w-full justify-center">
+          <BookPagination totalPages={totalPages} />
+        </div>
       </div>
     </div>
   );

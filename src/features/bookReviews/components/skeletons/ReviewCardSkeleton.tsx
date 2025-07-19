@@ -1,7 +1,5 @@
-// src/features/reviews/components/ReviewCardSkeleton.tsx
 import {
   Card,
-  CardContent,
   CardFooter,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";

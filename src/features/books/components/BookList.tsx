@@ -1,4 +1,4 @@
-import { Book } from "@/generated/prisma/client";
+import { Book } from "@prisma/client";
 import { BookCard } from "./BookCard";
 import { BookListItem } from "./BookListItem";
 
@@ -11,7 +11,9 @@ export function BookList({ books, view }: BookListProps) {
   if (books.length === 0) {
     return (
       <div className="text-center py-16 border-2 border-dashed rounded-lg">
-        <h3 className="text-2xl font-semibold tracking-tight">No Books Found</h3>
+        <h3 className="text-2xl font-semibold tracking-tight">
+          No Books Found
+        </h3>
         <p className="text-muted-foreground mt-2">
           Try adjusting your search or filter criteria.
         </p>
@@ -30,7 +32,7 @@ export function BookList({ books, view }: BookListProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+    <div className="grid justify-between grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
       {books.map((book) => (
         <BookCard key={book.id} book={book} />
       ))}

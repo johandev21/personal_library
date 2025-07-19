@@ -1,3 +1,7 @@
+// This component remains a client component, but it's simpler now.
+// It doesn't need to know about Next.js routing hooks.
+"use client";
+
 import { Filter, Grid, List, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,21 +47,21 @@ export function BookFilters({
   onViewChange,
 }: BookFiltersProps) {
   return (
-    <div className="container mx-auto flex items-center justify-between gap-4 flex-wrap">
+    <div className="flex items-center gap-4 flex-wrap">
       <div className="relative flex-1 md:grow-0">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           type="search"
           placeholder="Search by title or author..."
           className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
-          value={searchTerm}
+          defaultValue={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
         />
       </div>
       <div className="flex gap-2 items-center flex-wrap">
         <Select
+          value={statusFilter}
           onValueChange={(value: BookStatus | "all") => onStatusChange(value)}
-          defaultValue="all"
         >
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Filter by status" />

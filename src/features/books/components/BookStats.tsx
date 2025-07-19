@@ -1,6 +1,7 @@
 import { BookCheck, BookMarked, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Book } from "@/generated/prisma/client";
+import { Book } from "@prisma/client";
+import { Suspense } from "react";
 
 interface BookStatsProps {
   books: Book[];
@@ -24,7 +25,11 @@ export function BookStats({ books }: BookStatsProps) {
           <BookCheck className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{totalRead}</div>
+          <div className="text-2xl font-bold">
+            <Suspense fallback=" ">
+              {totalRead}
+            </Suspense>
+            </div>
           <p className="text-xs text-muted-foreground">
             Across your entire collection
           </p>

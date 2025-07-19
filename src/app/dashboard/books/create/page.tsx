@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { BookCreateForm } from "@/features/books/components/BookCreateForm";
+import { BookCreateForm } from "@/features/books/components/forms/BookCreateForm";
 
 export default function CreateBookPage() {
   return (

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { MoreHorizontal, Edit, Trash2 } from "lucide-react";
+import { MoreHorizontal, Edit } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { StarRating } from "./StarRating";
-import { Book } from "@/generated/prisma/client";
+import { Book } from "@prisma/client";
 import Link from "next/link";
 import { DeleteBookDialog } from "./DeleteBookDialog";
 import NoCoverFound from "../../../../public/no-cover.png";
@@ -36,10 +36,13 @@ export const BookListItem = ({ book }: BookListItemProps) => {
       <div className="flex flex-col items-start gap-4 col-span-2">
         <Link href={`/dashboard/books/${book.id}`}>
           <div className="md:col-span-2">
-            <p className="font-semibold text-base truncate" title={book.title}>
+            <p
+              className="font-semibold text-base text-truncate overflow-hidden"
+              title={book.title}
+            >
               {book.title}
             </p>
-            <p className="text-sm text-muted-foreground truncate">
+            <p className="text-sm text-muted-foreground text-truncate overflow-hidden">
               {book.author}
             </p>
           </div>

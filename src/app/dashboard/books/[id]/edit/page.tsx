@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getBookById } from "@/features/books/queries";
-import { BookEditForm } from "@/features/books/components/BookEditForm";
+import { BookEditForm } from "@/features/books/components/forms/BookEditForm";
 
 export default async function EditBookPage({
   params,
