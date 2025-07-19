@@ -4,7 +4,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ReviewFormSkeleton } from "@/features/bookReviews/components/skeletons/ReviewFormSkeleton";
+import { Loader2Icon } from "lucide-react";
 
 export default function EditReviewLoading() {
   return (
@@ -15,7 +15,7 @@ export default function EditReviewLoading() {
           <Skeleton className="h-4 w-4/5" />
         </CardHeader>
         <CardContent>
-          <ReviewFormSkeleton />
+          <Loader2Icon className="animate-spin h-8 w-8 text-primary" />
         </CardContent>
       </Card>
     </div>
