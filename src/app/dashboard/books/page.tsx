@@ -19,13 +19,13 @@ interface BookQueryFilters {
 }
 
 interface BooksDashboardPageProps {
-  searchParams?: {
+  searchParams?: Promise<{
     query?: string;
     states?: string;
     tags?: string | string[];
     view?: "grid" | "list";
     page?: string;
-  };
+  }>;
 }
 
 export default async function BooksDashboardPage({
