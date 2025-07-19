@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { getAuthenticatedUserId } from "../auth/actions";
-import { Book, BookStates } from "@prisma/client";
+import { Book, BookStates } from "@/generated/prisma/client";
 
 const BOOKS_PER_PAGE = 8;
 

@@ -20,7 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Book } from "@prisma/client";
+import { Book } from "@/generated/prisma/client";
 
 interface BookReviewEditFormProps {
   review: {

@@ -7,7 +7,7 @@ import { useDebouncedCallback } from "use-debounce";
 
 import { Button } from "@/components/ui/button";
 import { BookFilters } from "@/features/books/components/BookFilters";
-import type { BookStates } from "@prisma/client";
+import type { BookStates } from "@/generated/prisma/client";
 
 interface BookToolbarProps {
   allTags: string[];

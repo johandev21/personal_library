@@ -1,6 +1,6 @@
 import { Book, BookOpenCheck, MessageSquareQuote } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Book as BookType, BookReview } from "@prisma/client";
+import { Book as BookType, BookReview } from "@/generated/prisma/client";
 
 interface DashboardStatsProps {
   books: BookType[];

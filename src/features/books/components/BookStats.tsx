@@ -1,6 +1,6 @@
 import { BookCheck, BookMarked, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Book } from "@prisma/client";
+import { Book } from "@/generated/prisma/client";
 import { Suspense } from "react";
 
 interface BookStatsProps {

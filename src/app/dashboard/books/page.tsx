@@ -10,7 +10,7 @@ import {
   getBooksTotalPages,
   getBookTags,
 } from "@/features/books/queries";
-import { BookStates } from "@prisma/client"; 
+import { BookStates } from "@/generated/prisma/client";
 
 interface BookQueryFilters {
   query?: string;

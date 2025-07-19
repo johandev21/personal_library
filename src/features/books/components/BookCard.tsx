@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { MoreHorizontal, Edit } from "lucide-react";
 import Link from "next/link";
-import { Book } from "@prisma/client";
+import { Book } from "@/generated/prisma/client";
 
 import { Badge } from "@/components/ui/badge";
 import {

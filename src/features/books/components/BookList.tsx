@@ -1,4 +1,4 @@
-import { Book } from "@prisma/client";
+import { Book } from "@/generated/prisma/client";
 import { BookCard } from "./BookCard";
 import { BookListItem } from "./BookListItem";
 

@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { StarRating } from "./StarRating";
-import { Book } from "@prisma/client";
+import { Book } from "@/generated/prisma/client";
 import Link from "next/link";
 import { DeleteBookDialog } from "./DeleteBookDialog";
 import NoCoverFound from "../../../../public/no-cover.png";

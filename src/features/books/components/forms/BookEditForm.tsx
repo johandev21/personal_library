@@ -28,7 +28,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { BookTagsInput } from "../BookTagsInput";
-import { Book } from "@prisma/client";
+import { Book } from "@/generated/prisma/client";
 
 export function BookEditForm({ book }: { book: Book }) {
   const router = useRouter();
