@@ -19,7 +19,7 @@ export default async function ReviewDetailPage({
   if (!review) {
     notFound();
   }
-
+ 
   return (
     <main className="max-w-4xl mx-auto py-8 px-4 sm:px-6">
       <div className="flex justify-between items-center mb-6">

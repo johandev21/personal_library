@@ -34,7 +34,9 @@ interface BookReviewCreateFormProps {
   reviewableBooks: Book[];
 }
 
-export function BookReviewCreateForm({ reviewableBooks }: BookReviewCreateFormProps) {
+export function BookReviewCreateForm({
+  reviewableBooks,
+}: BookReviewCreateFormProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -43,7 +45,7 @@ export function BookReviewCreateForm({ reviewableBooks }: BookReviewCreateFormPr
     defaultValues: {
       title: "",
       content: "",
-      bookId: "", 
+      bookId: "",
     },
   });
 
@@ -90,7 +92,7 @@ export function BookReviewCreateForm({ reviewableBooks }: BookReviewCreateFormPr
             </FormItem>
           )}
         />
-        
+
         {/* Review Title Field */}
         <FormField
           control={form.control}
@@ -99,13 +101,16 @@ export function BookReviewCreateForm({ reviewableBooks }: BookReviewCreateFormPr
             <FormItem>
               <FormLabel>Review Title</FormLabel>
               <FormControl>
-                <Input placeholder="A Masterpiece of Modern Fiction" {...field} />
+                <Input
+                  placeholder="A Masterpiece of Modern Fiction"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        
+
         {/* Review Content Field */}
         <FormField
           control={form.control}
@@ -127,7 +132,12 @@ export function BookReviewCreateForm({ reviewableBooks }: BookReviewCreateFormPr
 
         {/* Action Buttons */}
         <div className="flex justify-end gap-2 pt-4">
-          <Button type="button" variant="outline" onClick={() => router.back()} disabled={isPending}>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => router.back()}
+            disabled={isPending}
+          >
             Cancel
           </Button>
           <Button type="submit" disabled={isPending}>

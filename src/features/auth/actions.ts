@@ -5,6 +5,7 @@ import { loginFormSchema, signupFormSchema } from "./schemas";
 import { revalidatePath } from "next/cache";
 import z from "zod";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
  
 
 export async function getAuthenticatedUserId() {
@@ -13,7 +14,7 @@ export async function getAuthenticatedUserId() {
   });
 
   if (!session || !session.user?.id) {
-    throw new Error("You must be logged in to create a book.");
+    redirect("/signin")
   }
 
   return session?.user.id;
