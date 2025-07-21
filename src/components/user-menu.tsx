@@ -1,7 +1,7 @@
 "use client";
 
 import { LogOutIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 
 import {
@@ -36,7 +36,7 @@ export default function UserMenu({ session }: UserMenuProps) {
   const router = useRouter();
 
   if (!session) {
-    return null;
+    redirect("/signin");
   }
 
   const { user } = session;
