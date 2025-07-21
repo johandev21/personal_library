@@ -19,6 +19,7 @@ import { redirect } from "next/navigation";
 import { ModeToggle } from "./mode-toggle";
 
 const navigationLinks = [
+  { href: "/dashboard", label: "Dashboard" },
   { href: "/dashboard/books", label: "Books" },
   { href: "/dashboard/books/reviews", label: "Reviews" },
 ];
