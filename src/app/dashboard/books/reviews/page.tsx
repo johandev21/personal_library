@@ -9,12 +9,12 @@ import { ListReviews } from "@/features/bookReviews/components/ListReviews";
 export default function BookReviewsPage() {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-center mb-8 gap-4">
         <div className="space-y-1">
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">
+          <h1 className="text-lg md:text-2xl font-bold tracking-tight text-foreground">
             My Book Reviews
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             A collection of your thoughts on the books you've read.
           </p>
         </div>

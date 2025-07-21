@@ -28,6 +28,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { BookTagsInput } from "../BookTagsInput";
+import { toast } from "sonner";
 
 export function BookCreateForm() {
   const router = useRouter();
@@ -50,8 +51,9 @@ export function BookCreateForm() {
       const result = await createBook(data);
 
       if (result?.error) {
-        alert(result.error);
+        toast.error(result.error);
       } else {
+        toast.success("Review created successfully!");
         router.push("/dashboard/books");
       }
     });

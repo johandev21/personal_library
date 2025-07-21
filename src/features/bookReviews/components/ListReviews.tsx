@@ -15,7 +15,8 @@ export async function ListReviews() {
           No Reviews Found
         </h3>
         <p className="text-muted-foreground mt-2 mb-6 max-w-sm">
-          It looks like you haven't written any reviews yet. Start by adding one for a book you've finished.
+          It looks like you haven't written any reviews yet. Start by adding one
+          for a book you've finished.
         </p>
         <Button asChild>
           <Link href="/dashboard/books/reviews/create">
@@ -27,7 +28,7 @@ export async function ListReviews() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid gap-8 lg:grid-cols-2">
       {reviews.map((review) => (
         <BookReviewCard key={review.id} review={review} />
       ))}

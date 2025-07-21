@@ -22,6 +22,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { DeleteReviewDialog } from "./DeleteReviewDialog";
 import { ReviewWithBook } from "../types";
+import { formatDateTime } from "@/lib/utils";
 
 interface BookReviewCardProps {
   review: ReviewWithBook;
@@ -44,19 +45,28 @@ export function BookReviewCard({ review }: BookReviewCardProps) {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem asChild>
-              <Link href={`/dashboard/books/reviews/${review.id}`} className="cursor-pointer">
+              <Link
+                href={`/dashboard/books/reviews/${review.id}`}
+                className="cursor-pointer"
+              >
                 <Book className="mr-2 h-4 w-4" />
                 <span>View Review Details</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href={`/dashboard/books/reviews/${review.id}/edit`} className="cursor-pointer">
+              <Link
+                href={`/dashboard/books/reviews/${review.id}/edit`}
+                className="cursor-pointer"
+              >
                 <Edit className="mr-2 h-4 w-4" />
                 <span>Edit Review</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href={`/dashboard/books/${review.book.id}`} className="cursor-pointer">
+              <Link
+                href={`/dashboard/books/${review.book.id}`}
+                className="cursor-pointer"
+              >
                 <Book className="mr-2 h-4 w-4" />
                 <span>View Book Details</span>
               </Link>
@@ -75,7 +85,6 @@ export function BookReviewCard({ review }: BookReviewCardProps) {
         </DropdownMenu>
       </div>
 
-      {/* Cover Image */}
       <div>
         <Image
           alt={`Book cover for ${review.book.title}`}
@@ -86,28 +95,30 @@ export function BookReviewCard({ review }: BookReviewCardProps) {
         />
       </div>
 
-      {/* Card Content */}
       <div className="flex flex-1 flex-col p-4">
-        <CardHeader className="p-0">
-          <CardTitle className="text-xl font-bold">{review.book.title}</CardTitle>
-          <p className="text-sm text-muted-foreground">
-            by {review.book.author}
-          </p>
-        </CardHeader>
+        <Link href={`/dashboard/books/reviews/${review.id}`}>
+          <CardHeader className="p-0">
+            <CardTitle className="text-xl font-bold">
+              {review.book.title}
+            </CardTitle>
+            <p className="text-sm text-muted-foreground">
+              by {review.book.author}
+            </p>
+          </CardHeader>
 
-        <CardContent className="mt-2 p-0 flex-grow">
-          <h4 className="font-semibold">{review.title}</h4>
-          <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
-            {review.content}
-          </p>
-        </CardContent>
+          <CardContent className="mt-2 p-0 flex-grow">
+            <h4 className="font-semibold">{review.title}</h4>
+            <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+              {review.content}
+            </p>
+          </CardContent>
+        </Link>
       </div>
 
-      {/* Card Footer */}
       <CardFooter className="border-t p-4 text-xs text-muted-foreground">
         <div className="flex justify-between w-full">
-          <span>Created: {format(new Date(review.createdAt), "MMM d, yyyy")}</span>
-          <span>Updated: {format(new Date(review.updatedAt), "MMM d, yyyy")}</span>
+          <span>Created: {formatDateTime(review.createdAt)}</span>
+          <span>Updated: {formatDateTime(review.updatedAt)}</span>
         </div>
       </CardFooter>
     </Card>

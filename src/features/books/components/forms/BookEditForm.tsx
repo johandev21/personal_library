@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/select";
 import { BookTagsInput } from "../BookTagsInput";
 import { Book } from "@/generated/prisma/client";
+import { toast } from "sonner";
 
 export function BookEditForm({ book }: { book: Book }) {
   const router = useRouter();
@@ -51,8 +52,9 @@ export function BookEditForm({ book }: { book: Book }) {
       const result = await updateBook(book.id, data);
 
       if (result?.error) {
-        alert(result.error);
+        toast.error(result.error);
       } else {
+        toast.success("Book updated successfully!")
         router.push("/dashboard/books");
       }
     });

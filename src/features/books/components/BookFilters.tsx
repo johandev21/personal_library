@@ -46,7 +46,7 @@ export function BookFilters({
 }: BookFiltersProps) {
   return (
     <div className="flex items-center gap-4 flex-wrap">
-      <div className="relative flex-1 md:grow-0">
+      <div className="relative flex-auto md:grow-0">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           type="search"

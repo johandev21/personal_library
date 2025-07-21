@@ -39,9 +39,11 @@ export function DeleteBookDialog({
       const result = await deleteBook(bookId);
       if (result?.error) {
         toast(result.error);
-      }
-      if (triggerVariant === "button") {
-        router.push("/dashboard/books");
+        if (triggerVariant === "button") {
+          router.push("/dashboard/books");
+        }
+      } else {
+        toast.success("Book deleted successfully!");
       }
     });
   };
