@@ -1,5 +1,3 @@
-// This component remains a client component, but it's simpler now.
-// It doesn't need to know about Next.js routing hooks.
 "use client";
 
 import { Filter, Grid, List, Search } from "lucide-react";

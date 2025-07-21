@@ -66,7 +66,7 @@ export default async function DashboardPage() {
                   <Link
                     href={`/dashboard/books/${book.id}`}
                     key={book.id}
-                    className="flex items-center gap-4 p-2 rounded-lg hover:bg-muted min-w-0"
+                    className="flex items-center gap-4 p-2 rounded-lg hover:bg-accent/50 min-w-0"
                   >
                     <Image
                       src={book.cover || "/placeholder.svg"}
@@ -109,7 +109,7 @@ export default async function DashboardPage() {
                   <Link
                     href={`/dashboard/books/reviews/${review.id}`}
                     key={review.id}
-                    className="flex flex-col p-2 rounded-lg hover:bg-muted min-w-0"
+                    className="flex flex-col p-2 rounded-lg hover:bg-accent/50 min-w-0"
                   >
                     <p className="font-semibold truncate">{review.title}</p>
                     <p className="text-sm text-muted-foreground truncate">

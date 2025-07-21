@@ -47,7 +47,7 @@ export default function UserMenu({ session }: UserMenuProps) {
   const avatarFallback = userName
     .split(" ")
     .map(name => name[0])
-    .join("")
+    .join("") 
     .substring(0, 2)
     .toUpperCase();
   

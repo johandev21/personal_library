@@ -24,7 +24,7 @@ interface BookListItemProps {
 
 export const BookListItem = ({ book }: BookListItemProps) => {
   return (
-    <Card className="w-full grid grid-cols-5 items-center p-3 gap-4 transition-all hover:bg-muted/50">
+    <Card className="w-full grid grid-cols-5 items-center p-3 gap-4 transition-all hover:bg-accent/30">
       <Image
         alt={`${book.title} cover`}
         className="aspect-[2/3] w-16 rounded-md object-cover col-auto"

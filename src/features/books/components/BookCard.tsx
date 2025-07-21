@@ -28,7 +28,7 @@ interface BookCardProps {
 
 export function BookCard({ book }: BookCardProps) {
   return (
-    <Card className="w-full transition-all hover:bg-muted/50 overflow-hidden pb-0 gap-2 relative">
+    <Card className="w-full transition-all hover:bg-accent/30 overflow-hidden pb-0 gap-2 relative">
       <Link href={`/dashboard/books/${book.id}`}>
         <CardHeader className="p-0">
           <Image

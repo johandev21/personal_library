@@ -32,7 +32,7 @@ export default async function Header() {
   }
 
   return (
-    <header className="border-b px-4 md:px-6 bg-card">
+    <header className="border-b px-4 md:px-6 bg-background/90 backdrop-blur-xs dark:bg-card/80 dark:backdrop-blur-xs">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <Popover>

@@ -1,6 +1,7 @@
 import { Book } from "@/generated/prisma/client";
 import { BookCard } from "./BookCard";
 import { BookListItem } from "./BookListItem";
+import { Suspense } from "react";
 
 interface BookListProps {
   books: Book[];
@@ -32,7 +33,7 @@ export function BookList({ books, view }: BookListProps) {
   }
 
   return (
-    <div className="grid justify-between grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {books.map((book) => (
         <BookCard key={book.id} book={book} />
       ))}

@@ -1,7 +1,5 @@
 import { Suspense } from "react";
-import { Separator } from "@/components/ui/separator";
 import { BookList } from "@/features/books/components/BookList";
-import { BookStats } from "@/features/books/components/BookStats";
 import { BookToolbar } from "@/features/books/components/BookToolbar";
 import { BookPagination } from "@/features/books/components/BookPagination";
 import {
@@ -53,7 +51,7 @@ export default async function BooksDashboardPage({
 
   const filters: BookQueryFilters = { query, states, tags };
 
-  const [paginatedBooks, totalPages, allTags, allBooksForStats] =
+  const [paginatedBooks, totalPages, allTags] =
     await Promise.all([
       getFilteredBooks(filters, currentPage),
       getBooksTotalPages(filters),
@@ -65,15 +63,6 @@ export default async function BooksDashboardPage({
 
   return (
     <div className="flex flex-col gap-8">
-      <section aria-labelledby="dashboard-stats-title">
-        <h2 id="dashboard-stats-title" className="sr-only">
-          Dashboard Statistics
-        </h2>
-        <BookStats books={allBooksForStats} />
-      </section>
-
-      <Separator />
-
       <div className="flex flex-col gap-4">
         <BookToolbar allTags={allTags} />
 
