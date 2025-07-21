@@ -2,7 +2,6 @@ import Link from "next/link";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 
-import Logo from "@/components/logo";
 import UserMenu from "@/components/user-menu";
 import { Button } from "@/components/ui/button";
 import {
@@ -85,13 +84,6 @@ export default async function Header() {
             </PopoverContent>
           </Popover>
           <div className="flex items-center gap-6">
-            <Link
-              href="/dashboard"
-              className="text-primary hover:text-primary/90"
-            >
-              {" "}
-              <Logo />{" "}
-            </Link>
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
