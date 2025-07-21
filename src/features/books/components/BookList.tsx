@@ -1,7 +1,6 @@
 import { Book } from "@/generated/prisma/client";
 import { BookCard } from "./BookCard";
 import { BookListItem } from "./BookListItem";
-import { Suspense } from "react";
 
 interface BookListProps {
   books: Book[];

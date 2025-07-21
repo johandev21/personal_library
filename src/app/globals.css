@@ -11,7 +11,7 @@ body[data-radix-scroll-locked] {
 :root {
   --background: oklch(0.9900 0 0);
   --foreground: oklch(0.1450 0.0200 0);
-  --card: oklch(1 0. 0);
+  --card: oklch(1 0 0);
   --card-foreground: oklch(0.1450 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.1450 0.0200 0);
