@@ -6,7 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function BookDetailLoading() {
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
+    <div className="max-w-4xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <Button variant="ghost" disabled>
           <ArrowLeft className="mr-2 h-4 w-4" /> Back to list
@@ -31,7 +31,7 @@ export default function BookDetailLoading() {
         </CardHeader>
         <CardContent className="grid md:grid-cols-3 gap-6">
           <div className="relative w-full rounded">
-            <Skeleton className="object-cover rounded md:aspect-[1/1.6] md:w-full" />
+            <Skeleton className="object-cover rounded w-[200px] h-[305px] mx-auto md:h-auto md:aspect-[1/1.6] md:w-full md:mx-0" />
           </div>
 
           <div className="md:col-span-2 space-y-6">

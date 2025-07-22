@@ -7,6 +7,7 @@ import { ArrowLeft, Edit } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getReviewById } from "@/features/bookReviews/queries";
+import { formatDateTime } from "@/lib/utils";
 
 export default async function ReviewDetailPage({
   params,
@@ -21,7 +22,7 @@ export default async function ReviewDetailPage({
   }
  
   return (
-    <main className="max-w-4xl mx-auto py-8 px-4 sm:px-6">
+    <main className="max-w-4xl mx-auto py-8">
       <div className="flex justify-between items-center mb-6">
         <Button asChild variant="outline">
           <Link href="/dashboard/books/reviews">
@@ -45,7 +46,7 @@ export default async function ReviewDetailPage({
           alt={`${review.book.title} cover`}
           width={150}
           height={225}
-          className="rounded-md object-cover aspect-[2/3] w-full sm:w-[150px] shadow-lg"
+          className="rounded-md object-cover md:aspect-[1/1.6] mx-auto md:mx-0 shadow-lg"
         />
         <div className="pt-2">
           <p className="text-sm font-medium text-primary">Review for:</p>
@@ -70,11 +71,11 @@ export default async function ReviewDetailPage({
       <div className="mt-12 pt-6 border-t text-sm text-muted-foreground flex justify-between">
         <span>
           <strong>Created:</strong>{" "}
-          {format(new Date(review.createdAt), "MMMM d, yyyy")}
+          {formatDateTime(review.createdAt)}
         </span>
         <span>
           <strong>Last Updated:</strong>{" "}
-          {format(new Date(review.updatedAt), "MMMM d, yyyy 'at' h:mm a")}
+          {formatDateTime(review.updatedAt)}
         </span>
       </div>
     </main>
