@@ -14,14 +14,16 @@ import {
 } from "@/components/ui/alert-dialog";
 import { deleteReview } from "../actions";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 interface DeleteReviewDialogProps {
   reviewId: string;
-  children: React.ReactNode; 
+  children: React.ReactNode;
 }
 
 export function DeleteReviewDialog({ reviewId, children }: DeleteReviewDialogProps) {
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("Reviews.delete_dialog");
 
   const handleDelete = () => {
     startTransition(async () => {
@@ -29,7 +31,7 @@ export function DeleteReviewDialog({ reviewId, children }: DeleteReviewDialogPro
       if (result?.error) {
         toast.error(result.error);
       } else {
-        toast.success("Review deleted successfully.");
+        toast.success(t("delete_success_toast")); 
       }
     });
   };
@@ -39,18 +41,16 @@ export function DeleteReviewDialog({ reviewId, children }: DeleteReviewDialogPro
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your review.
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t("title")}</AlertDialogTitle>
+          <AlertDialogDescription>{t("description")}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={isPending}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel disabled={isPending}>{t("cancel_button")}</AlertDialogCancel>
           <AlertDialogAction
             disabled={isPending}
             onClick={handleDelete}
           >
-            {isPending ? "Deleting..." : "Delete Permanently"}
+            {isPending ? t("deleting_button") : t("delete_permanently_button")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

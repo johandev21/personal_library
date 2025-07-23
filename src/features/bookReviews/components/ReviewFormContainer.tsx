@@ -1,10 +1,12 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { BookReviewCreateForm } from "./BookReviewCreateForm";
 import { getReviewableBooks } from "../actions";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
 export async function ReviewFormContainer() {
   const reviewableBooks = await getReviewableBooks();
+  const t = await getTranslations("Reviews");
 
   if (reviewableBooks.length > 0) {
     return <BookReviewCreateForm reviewableBooks={reviewableBooks} />;
@@ -12,13 +14,12 @@ export async function ReviewFormContainer() {
 
   return (
     <div className="text-center py-12">
-      <h3 className="text-lg font-semibold">No Books to Review</h3>
+      <h3 className="text-lg font-semibold">{t("no_books_to_review_title")}</h3>
       <p className="text-muted-foreground mt-2 mb-4">
-        You've reviewed all your finished books, or you need to mark a book as
-        "Read" first.
+        {t("no_books_to_review_description")}
       </p>
       <Button asChild>
-        <Link href="/dashboard/books">Go to My Books</Link>
+        <Link href="/dashboard/books">{t("go_to_my_books_button")}</Link>
       </Button>
     </div>
   );

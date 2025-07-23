@@ -8,6 +8,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { Button } from "@/components/ui/button";
 import { BookFilters } from "@/features/books/components/BookFilters";
 import type { BookStates } from "@/generated/prisma/client";
+import { useTranslations } from "next-intl";
 
 interface BookToolbarProps {
   allTags: string[];
@@ -17,6 +18,7 @@ export function BookToolbar({ allTags }: BookToolbarProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const t = useTranslations("Books");
 
   const createUrlWithNewParams = (params: URLSearchParams) => {
     params.set("page", "1");
@@ -59,7 +61,7 @@ export function BookToolbar({ allTags }: BookToolbarProps) {
   return (
     <section aria-labelledby="book-filters-title">
       <h2 id="book-filters-title" className="sr-only">
-        Book Search, Filters, and Actions
+        {t("filters_title")}
       </h2>
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <BookFilters
@@ -79,7 +81,7 @@ export function BookToolbar({ allTags }: BookToolbarProps) {
             className="flex items-center gap-2"
           >
             <PlusCircle className="h-4 w-4" />
-            <span>Add New Book</span>
+            <span>{t("add_new_book_button")}</span>
           </Link>
         </Button>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { LogOutIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import {useRouter} from '@/i18n/navigation';
 import { authClient } from "@/lib/auth-client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

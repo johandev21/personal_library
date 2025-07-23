@@ -1,0 +1,145 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+  "Dashboard": {
+    "greeting": "¡Bienvenido de vuelta, {username}!",
+    "buttons": {
+      "add_book": "Agregar un nuevo libro",
+      "write_review": "Escribir una reseña"
+    },
+    "stats": {
+      "total_books": {
+        "label": "Total de libros",
+        "description": "en toda tu colección"
+      },
+      "to_read": {
+        "label": "Por leer",
+        "description": "libros que quieres leer"
+      },
+      "total_reviews": {
+        "label": "Total de reseñas",
+        "description": "reseñas que has escrito"
+      }
+    },
+    "currently_reading": {
+      "title": "Leyendo actualmente",
+      "view_all": "Ver todo"
+    },
+    "recent_reviews": {
+      "title": "Reseñas recientes",
+      "view_all": "Ver todo"
+    },
+    "no_books_currently_reading": "Aún no hay libros en lectura.",
+    "no_reviews_written": "Aún no has escrito reseñas."
+  },
+  "Auth": {
+    "Login": {
+      "title": "Inicia sesión en tu cuenta",
+      "description": "Introduce tu correo electrónico a continuación para iniciar sesión en tu cuenta",
+      "email_label": "Correo electrónico",
+      "email_placeholder": "m@ejemplo.com",
+      "password_label": "Contraseña",
+      "forgot_password_link": "¿Olvidaste tu contraseña?",
+      "logging_in_button": "Iniciando sesión...",
+      "login_button": "Iniciar sesión",
+      "no_account_prompt": "¿No tienes cuenta?",
+      "signup_link": "Regístrate"
+    },
+    "Signup": {
+      "title": "Crear una cuenta",
+      "description": "Introduce tus datos a continuación para crear tu cuenta",
+      "name_label": "Nombre",
+      "name_placeholder": "Juan Pérez",
+      "email_label": "Correo electrónico",
+      "email_placeholder": "m@ejemplo.com",
+      "password_label": "Contraseña",
+      "confirm_password_label": "Confirmar contraseña",
+      "creating_account_button": "Creando cuenta...",
+      "create_account_button": "Crear cuenta",
+      "already_have_account_prompt": "¿Ya tienes una cuenta?",
+      "signin_link": "Iniciar sesión",
+      "success_toast": "¡Cuenta creada! Por favor, inicia sesión para continuar."
+    }
+  },
+  "Books": {
+    "loading_books_fallback": "Cargando libros...",
+    "collection_title": "Colección de Libros",
+    "filters_title": "Búsqueda, Filtros y Acciones de Libros",
+    "no_books_found": "No se encontraron libros",
+    "no_books_found_description": "Intenta ajustar tus criterios de búsqueda o filtro.",
+    "add_new_book_button": "Añadir Nuevo Libro",
+    "create_page": {
+      "title": "Añadir un Nuevo Libro",
+      "description": "Rellena los detalles a continuación para añadir un nuevo libro a tu colección."
+    },
+    "create_form": {
+      "title_label": "Título",
+      "title_placeholder": "El Camino de los Reyes",
+      "author_label": "Autor",
+      "author_placeholder": "Brandon Sanderson",
+      "cover_label": "URL de la imagen de portada",
+      "cover_placeholder": "https://ejemplo.com/portada.jpg",
+      "cover_description": "Pega la URL completa de la imagen de portada del libro.",
+      "status_label": "Estado",
+      "status_placeholder": "Selecciona el estado del libro",
+      "status_want_to_read": "Quiero leer",
+      "status_reading": "Leyendo actualmente",
+      "status_read": "Lectura finalizada",
+      "rating_label": "Calificación",
+      "rating_placeholder": "Califica este libro (1-5)",
+      "rating_none": "Sin calificación",
+      "rating_horrible": "⭐️ Horrible",
+      "rating_bad": "⭐️⭐️ Malo",
+      "rating_okay": "⭐️⭐️⭐️ Regular",
+      "rating_good": "⭐️⭐️⭐️⭐️ Bueno",
+      "rating_excellent": "⭐️⭐️⭐️⭐️⭐️ Excelente",
+      "rating_description": "Solo puedes calificar libros que hayas terminado.",
+      "tags_label": "Etiquetas",
+      "tags_description": "Categoriza tu libro con etiquetas como \"Fantasía\", \"Ciencia Ficción\", etc.",
+      "save_success_toast": "¡Libro creado con éxito!",
+      "cancel_button": "Cancelar",
+      "saving_button": "Guardando...",
+      "save_book_button": "Guardar Libro"
+    }
+  },
+  "Reviews": {
+    "page_title": "Mis Reseñas de Libros",
+    "page_description": "Una colección de tus pensamientos sobre los libros que has leído.",
+    "create_review_button": "Crear Reseña",
+    "no_reviews_found": "No se encontraron reseñas",
+    "no_reviews_found_description": "Parece que aún no has escrito ninguna reseña. Comienza agregando una para un libro que hayas terminado.",
+    "create_first_review_button": "Crea Tu Primera Reseña",
+    "no_books_to_review_title": "No Hay Libros para Reseñar",
+    "no_books_to_review_description": "Ya has reseñado todos tus libros terminados o necesitas marcar un libro como \"Leído\" primero.",
+    "go_to_my_books_button": "Ir a Mis Libros",
+    "book_select_label": "Libro para Reseñar",
+    "book_select_placeholder": "Selecciona un libro que hayas terminado...",
+    "review_title_label": "Título de la Reseña",
+    "review_title_placeholder": "Una Obra Maestra de la Ficción Moderna",
+    "review_content_label": "Contenido de la Reseña",
+    "review_content_placeholder": "Escribe tus pensamientos sobre el libro...",
+    "review_description_read": "Tus pensamientos después de terminar este libro.",
+    "cancel_button": "Cancelar",
+    "submitting_button": "Enviando...",
+    "submit_review_button": "Enviar Reseña",
+    "review_created_success_toast": "¡Reseña creada exitosamente!",
+    "options_label": "Opciones de la Reseña",
+    "details_link": "Ver Detalles de la Reseña",
+    "edit_link": "Editar Reseña",
+    "book_details_link": "Ver Detalles del Libro",
+    "delete_review_action": "Eliminar Reseña",
+    "by_author": "por {author}",
+    "created_at": "Creado: {date}",
+    "updated_at": "Actualizado: {date}",
+    "delete_dialog": {
+      "title": "¿Estás absolutamente seguro?",
+      "description": "Esta acción no se puede deshacer. Eliminará permanentemente tu reseña.",
+      "cancel_button": "Cancelar",
+      "deleting_button": "Eliminando...",
+      "delete_permanently_button": "Eliminar Permanentemente",
+      "delete_success_toast": "Reseña eliminada con éxito."
+    }
+  }
+}

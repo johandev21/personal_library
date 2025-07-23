@@ -3,7 +3,6 @@
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { reviewCreateSchema, ReviewCreateData } from "../schemas";
@@ -29,6 +28,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Book } from "@/generated/prisma/client";
+import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 
 interface BookReviewCreateFormProps {
   reviewableBooks: Book[];
@@ -39,6 +40,7 @@ export function BookReviewCreateForm({
 }: BookReviewCreateFormProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("Reviews");
 
   const form = useForm<ReviewCreateData>({
     resolver: zodResolver(reviewCreateSchema),
@@ -55,7 +57,7 @@ export function BookReviewCreateForm({
       if (result?.error) {
         toast.error(result.error);
       } else {
-        toast.success("Review created successfully!");
+        toast.success(t("review_created_success_toast"));
         router.push("/dashboard/books/reviews");
       }
     });
@@ -70,11 +72,11 @@ export function BookReviewCreateForm({
           name="bookId"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Book to Review</FormLabel>
+              <FormLabel>{t("book_select_label")}</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a book you've finished..." />
+                    <SelectValue placeholder={t("book_select_placeholder")} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -86,7 +88,7 @@ export function BookReviewCreateForm({
                 </SelectContent>
               </Select>
               <FormDescription>
-                You can only review books you've marked as "Read".
+                {t("review_description_read")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -99,10 +101,10 @@ export function BookReviewCreateForm({
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Review Title</FormLabel>
+              <FormLabel>{t("review_title_label")}</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="A Masterpiece of Modern Fiction"
+                  placeholder={t("review_title_placeholder")}
                   {...field}
                 />
               </FormControl>
@@ -117,10 +119,10 @@ export function BookReviewCreateForm({
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Review Content</FormLabel>
+              <FormLabel>{t("review_content_label")}</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Write your thoughts on the book..."
+                  placeholder={t("review_content_placeholder")}
                   className="min-h-[150px]"
                   {...field}
                 />
@@ -138,10 +140,10 @@ export function BookReviewCreateForm({
             onClick={() => router.back()}
             disabled={isPending}
           >
-            Cancel
+            {t("cancel_button")}
           </Button>
           <Button type="submit" disabled={isPending}>
-            {isPending ? "Submitting..." : "Submit Review"}
+            {isPending ? t("submitting_button") : t("submit_review_button")}
           </Button>
         </div>
       </form>

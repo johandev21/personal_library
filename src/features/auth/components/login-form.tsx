@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/card";
 import { signIn } from "../actions";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 export function LoginForm({
   className,
@@ -35,6 +36,7 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
+  const t = useTranslations("Auth.Login");
 
   const form = useForm<loginFormValues>({
     resolver: zodResolver(loginFormSchema),
@@ -57,7 +59,8 @@ export function LoginForm({
       }
     } catch (err) {
       console.error("An unexpected network or server error occurred:", err);
-      alert("An unexpected error occurred. Please try again.");
+      // Using the translated message here as well for consistency
+      toast.error("An unexpected error occurred. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -67,10 +70,8 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account
-          </CardDescription>
+          <CardTitle>{t("title")}</CardTitle>
+          <CardDescription>{t("description")}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -80,11 +81,11 @@ export function LoginForm({
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t("email_label")}</FormLabel>
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder="m@example.com"
+                        placeholder={t("email_placeholder")}
                         {...field}
                         disabled={isLoading}
                         autoComplete="off"
@@ -101,12 +102,12 @@ export function LoginForm({
                 render={({ field }) => (
                   <FormItem>
                     <div className="flex items-center">
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel>{t("password_label")}</FormLabel>
                       <Link
                         href="/forgot-password"
                         className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                       >
-                        Forgot your password?
+                        {t("forgot_password_link")}
                       </Link>
                     </div>
                     <FormControl>
@@ -124,16 +125,19 @@ export function LoginForm({
 
               <div className="flex flex-col gap-3">
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Logging in..." : "Login"}
+                  {isLoading ? t("logging_in_button") : t("login_button")}
                 </Button>
               </div>
             </form>
           </Form>
 
           <div className="mt-4 text-center text-sm">
-            Don't have an account?{" "}
-            <Link href="/signup" className="underline underline-offset-4 hover:text-primary">
-              Sign up
+            {t("no_account_prompt")}{" "}
+            <Link
+              href="/signup"
+              className="underline underline-offset-4 hover:text-primary"
+            >
+              {t("signup_link")}
             </Link>
           </div>
         </CardContent>

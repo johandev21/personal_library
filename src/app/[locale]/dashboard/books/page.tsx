@@ -3,16 +3,16 @@ import { BookList } from "@/features/books/components/BookList";
 import { BookToolbar } from "@/features/books/components/BookToolbar";
 import { BookPagination } from "@/features/books/components/BookPagination";
 import {
-  getBooks,
   getFilteredBooks,
   getBooksTotalPages,
   getBookTags,
 } from "@/features/books/queries";
 import { BookStates } from "@/generated/prisma/client";
+import { getTranslations } from "next-intl/server";
 
 interface BookQueryFilters {
   query?: string;
-  states?: BookStates | "all"; 
+  states?: BookStates | "all";
   tags?: string[];
 }
 
@@ -41,35 +41,36 @@ export default async function BooksDashboardPage({
     : [];
 
   const statesFromUrl = resolvedSearchParams?.states || "all";
-  
+
   const validStates = [...Object.values(BookStates), "all"];
-  const states: BookStates | "all" = validStates.includes(
-    statesFromUrl as any
-  )
+  const states: BookStates | "all" = validStates.includes(statesFromUrl as any)
     ? (statesFromUrl as BookStates | "all")
     : "all";
 
   const filters: BookQueryFilters = { query, states, tags };
 
-  const [paginatedBooks, totalPages, allTags] =
-    await Promise.all([
-      getFilteredBooks(filters, currentPage),
-      getBooksTotalPages(filters),
-      getBookTags(),
-      getBooks(),
-    ]);
+  const [paginatedBooks, totalPages, allTags] = await Promise.all([
+    getFilteredBooks(filters, currentPage),
+    getBooksTotalPages(filters),
+    getBookTags(),
+  ]);
 
   const suspenseKey = [query, states, tags.join(","), currentPage].join("-");
 
+  const t = await getTranslations("Books"); 
+  
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <BookToolbar allTags={allTags} />
 
-        <Suspense key={suspenseKey} fallback={<div>Loading books...</div>}>
+        <Suspense
+          key={suspenseKey}
+          fallback={<div>{t("loading_books_fallback")}</div>}
+        >
           <section aria-labelledby="book-collection-title">
             <h2 id="book-collection-title" className="sr-only">
-              Book Collection
+              {t("collection_title")}
             </h2>
             <BookList books={paginatedBooks} view={view} />
           </section>

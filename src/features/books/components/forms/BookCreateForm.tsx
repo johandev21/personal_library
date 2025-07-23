@@ -29,10 +29,12 @@ import {
 } from "@/components/ui/select";
 import { BookTagsInput } from "../BookTagsInput";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 export function BookCreateForm() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("Books.create_form");
 
   const form = useForm({
     resolver: zodResolver(bookCreateSchema),
@@ -53,7 +55,7 @@ export function BookCreateForm() {
       if (result?.error) {
         toast.error(result.error);
       } else {
-        toast.success("Review created successfully!");
+        toast.success(t("save_success_toast")); // Use translated toast message
         router.push("/dashboard/books");
       }
     });
@@ -69,10 +71,10 @@ export function BookCreateForm() {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Title</FormLabel>
+                  <FormLabel>{t("title_label")}</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="The Way of Kings"
+                      placeholder={t("title_placeholder")}
                       {...field}
                       autoComplete="off"
                     />
@@ -86,10 +88,10 @@ export function BookCreateForm() {
               name="author"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Author</FormLabel>
+                  <FormLabel>{t("author_label")}</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Brandon Sanderson"
+                      placeholder={t("author_placeholder")}
                       {...field}
                       autoComplete="off"
                     />
@@ -104,16 +106,16 @@ export function BookCreateForm() {
             name="cover"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Cover Image URL</FormLabel>
+                <FormLabel>{t("cover_label")}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="https://example.com/cover.jpg"
+                    placeholder={t("cover_placeholder")}
                     {...field}
                     autoComplete="off"
                   />
                 </FormControl>
                 <FormDescription>
-                  Paste the full URL to the book's cover image.
+                  {t("cover_description")}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -127,20 +129,20 @@ export function BookCreateForm() {
             name="states"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Status</FormLabel>
+                <FormLabel>{t("status_label")}</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select the book's status" />
+                      <SelectValue placeholder={t("status_placeholder")} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="want_to_read">Want to Read</SelectItem>
-                    <SelectItem value="reading">Currently Reading</SelectItem>
-                    <SelectItem value="read">Finished Reading</SelectItem>
+                    <SelectItem value="want_to_read">{t("status_want_to_read")}</SelectItem>
+                    <SelectItem value="reading">{t("status_reading")}</SelectItem>
+                    <SelectItem value="read">{t("status_read")}</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -152,7 +154,7 @@ export function BookCreateForm() {
             name="rating"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Rating</FormLabel>
+                <FormLabel>{t("rating_label")}</FormLabel>
                 <Select
                   value={field.value == null ? "none" : String(field.value)}
                   onValueChange={(value) =>
@@ -161,20 +163,20 @@ export function BookCreateForm() {
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Rate this book (1-5)" />
+                      <SelectValue placeholder={t("rating_placeholder")} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="none">No Rating</SelectItem>
-                    <SelectItem value="1">⭐️ Horrible</SelectItem>
-                    <SelectItem value="2">⭐️⭐️ Bad</SelectItem>
-                    <SelectItem value="3">⭐️⭐️⭐️ Okay</SelectItem>
-                    <SelectItem value="4">⭐️⭐️⭐️⭐️ Good</SelectItem>
-                    <SelectItem value="5">⭐️⭐️⭐️⭐️⭐️ Excellent</SelectItem>
+                    <SelectItem value="none">{t("rating_none")}</SelectItem>
+                    <SelectItem value="1">{t("rating_horrible")}</SelectItem>
+                    <SelectItem value="2">{t("rating_bad")}</SelectItem>
+                    <SelectItem value="3">{t("rating_okay")}</SelectItem>
+                    <SelectItem value="4">{t("rating_good")}</SelectItem>
+                    <SelectItem value="5">{t("rating_excellent")}</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormDescription>
-                  You can only rate books you've finished.
+                  {t("rating_description")}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -187,12 +189,12 @@ export function BookCreateForm() {
           name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tags</FormLabel>
+              <FormLabel>{t("tags_label")}</FormLabel>
               <FormControl>
                 <BookTagsInput value={field.value} onChange={field.onChange} />
               </FormControl>
               <FormDescription>
-                Categorize your book with tags like "Fantasy", "Sci-Fi", etc.
+                {t("tags_description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -206,10 +208,10 @@ export function BookCreateForm() {
             onClick={() => router.back()}
             disabled={isPending}
           >
-            Cancel
+            {t("cancel_button")}
           </Button>
           <Button type="submit" disabled={isPending}>
-            {isPending ? "Saving..." : "Save Book"}
+            {isPending ? t("saving_button") : t("save_book_button")}
           </Button>
         </div>
       </form>

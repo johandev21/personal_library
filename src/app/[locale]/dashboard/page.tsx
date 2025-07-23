@@ -10,34 +10,37 @@ import { Separator } from "@/components/ui/separator";
 import { getBooks } from "@/features/books/queries";
 import { getBookReviews } from "@/features/bookReviews/queries";
 import { DashboardStats } from "@/components/DashboardStats";
+import { getTranslations } from "next-intl/server";
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({ headers: await headers() });
+  const userName = session?.user?.name?.split(" ")[0] || "Reader";
 
   const [books, reviews] = await Promise.all([getBooks(), getBookReviews()]);
-
-  const userName = session?.user?.name?.split(" ")[0] || "Reader";
 
   const currentlyReading = books
     .filter((book) => book.states === "reading")
     .slice(0, 5);
   const recentReviews = reviews.slice(0, 5);
 
+  const t = await getTranslations("Dashboard");
+
   return (
     <div className="flex flex-col gap-8">
       <section className="space-y-4">
         <h1 className="text-3xl font-bold tracking-tight">
-          Welcome back, {userName}!
+          {t("greeting", { username: userName })}
         </h1>
         <div className="flex flex-wrap gap-2">
           <Button asChild>
             <Link href="/dashboard/books/create">
-              <BookPlus className="mr-2 h-4 w-4" /> Add a New Book
+              <BookPlus className="mr-2 h-4 w-4" /> {t("buttons.add_book")}
             </Link>
           </Button>
           <Button asChild variant="secondary">
             <Link href="/dashboard/books/reviews/create">
-              <MessageSquarePlus className="mr-2 h-4 w-4" /> Write a Review
+              <MessageSquarePlus className="mr-2 h-4 w-4" />{" "}
+              {t("buttons.write_review")}
             </Link>
           </Button>
         </div>
@@ -52,10 +55,11 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         <Card>
           <CardHeader className="flex items-center justify-between">
-            <CardTitle>Currently Reading</CardTitle>
+            <CardTitle>{t("currently_reading.title")}</CardTitle>
             <Button asChild variant="ghost" size="sm">
               <Link href="/dashboard/books">
-                View All <ArrowRight className="ml-2 h-4 w-4" />
+                {t("currently_reading.view_all")}{" "}
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </CardHeader>
@@ -86,7 +90,7 @@ export default async function DashboardPage() {
               </div>
             ) : (
               <p className="text-sm text-muted-foreground text-center py-8">
-                No books currently being read.
+                {t("no_books_currently_reading")}
               </p>
             )}
           </CardContent>
@@ -95,10 +99,11 @@ export default async function DashboardPage() {
         {/* "Recent Reviews" Card */}
         <Card>
           <CardHeader className="flex items-center justify-between">
-            <CardTitle>Recent Reviews</CardTitle>
+            <CardTitle>{t("recent_reviews.title")}</CardTitle>
             <Button asChild variant="ghost" size="sm">
               <Link href="/dashboard/books/reviews">
-                View All <ArrowRight className="ml-2 h-4 w-4" />
+                {t("recent_reviews.view_all")}{" "}
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </CardHeader>
@@ -120,7 +125,7 @@ export default async function DashboardPage() {
               </div>
             ) : (
               <p className="text-sm text-muted-foreground text-center py-8">
-                No reviews written yet.
+                {t("no_reviews_written")}
               </p>
             )}
           </CardContent>

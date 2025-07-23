@@ -1,0 +1,145 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+  "Dashboard": {
+    "greeting": "Welcome back, {username}!",
+    "buttons": {
+      "add_book": "Add a New Book",
+      "write_review": "Write a Review"
+    },
+    "stats": {
+      "total_books": {
+        "label": "Total Books",
+        "description": "in your entire collection"
+      },
+      "to_read": {
+        "label": "To-Read List",
+        "description": "books you want to read"
+      },
+      "total_reviews": {
+        "label": "Total Reviews",
+        "description": "reviews you've written"
+      }
+    },
+    "currently_reading": {
+      "title": "Currently Reading",
+      "view_all": "View All"
+    },
+    "recent_reviews": {
+      "title": "Recent Reviews",
+      "view_all": "View All"
+    },
+    "no_books_currently_reading": "No books currently being read.",
+    "no_reviews_written": "No reviews written yet."
+  },
+  "Auth": {
+    "Login": {
+      "title": "Login to your account",
+      "description": "Enter your email below to login to your account",
+      "email_label": "Email",
+      "email_placeholder": "m@example.com",
+      "password_label": "Password",
+      "forgot_password_link": "Forgot your password?",
+      "logging_in_button": "Logging in...",
+      "login_button": "Login",
+      "no_account_prompt": "Don't have an account?",
+      "signup_link": "Sign up"
+    },
+    "Signup": {
+      "title": "Create an account",
+      "description": "Enter your details below to create your account",
+      "name_label": "Name",
+      "name_placeholder": "John Doe",
+      "email_label": "Email",
+      "email_placeholder": "m@example.com",
+      "password_label": "Password",
+      "confirm_password_label": "Confirm Password",
+      "creating_account_button": "Creating Account...",
+      "create_account_button": "Create Account",
+      "already_have_account_prompt": "Already have an account?",
+      "signin_link": "Sign In",
+      "success_toast": "Account created! Please sign in to continue."
+    }
+  },
+  "Books": {
+    "loading_books_fallback": "Loading books...",
+    "collection_title": "Book Collection",
+    "filters_title": "Book Search, Filters, and Actions",
+    "no_books_found": "No Books Found",
+    "no_books_found_description": "Try adjusting your search or filter criteria.",
+    "add_new_book_button": "Add New Book",
+    "create_page": {
+      "title": "Add a New Book",
+      "description": "Fill out the details below to add a new book to your collection."
+    },
+    "create_form": {
+      "title_label": "Title",
+      "title_placeholder": "The Way of Kings",
+      "author_label": "Author",
+      "author_placeholder": "Brandon Sanderson",
+      "cover_label": "Cover Image URL",
+      "cover_placeholder": "https://example.com/cover.jpg",
+      "cover_description": "Paste the full URL to the book's cover image.",
+      "status_label": "Status",
+      "status_placeholder": "Select the book's status",
+      "status_want_to_read": "Want to Read",
+      "status_reading": "Currently Reading",
+      "status_read": "Finished Reading",
+      "rating_label": "Rating",
+      "rating_placeholder": "Rate this book (1-5)",
+      "rating_none": "No Rating",
+      "rating_horrible": "⭐️ Horrible",
+      "rating_bad": "⭐️⭐️ Bad",
+      "rating_okay": "⭐️⭐️⭐️ Okay",
+      "rating_good": "⭐️⭐️⭐️⭐️ Good",
+      "rating_excellent": "⭐️⭐️⭐️⭐️⭐️ Excellent",
+      "rating_description": "You can only rate books you've finished.",
+      "tags_label": "Tags",
+      "tags_description": "Categorize your book with tags like \"Fantasy\", \"Sci-Fi\", etc.",
+      "save_success_toast": "Book created successfully!",
+      "cancel_button": "Cancel",
+      "saving_button": "Saving...",
+      "save_book_button": "Save Book"
+    }
+  },
+  "Reviews": {
+    "page_title": "My Book Reviews",
+    "page_description": "A collection of your thoughts on the books you've read.",
+    "create_review_button": "Create Review",
+    "no_reviews_found": "No Reviews Found",
+    "no_reviews_found_description": "It looks like you haven't written any reviews yet. Start by adding one for a book you've finished.",
+    "create_first_review_button": "Create Your First Review",
+    "no_books_to_review_title": "No Books to Review",
+    "no_books_to_review_description": "You've reviewed all your finished books, or you need to mark a book as \"Read\" first.",
+    "go_to_my_books_button": "Go to My Books",
+    "book_select_label": "Book to Review",
+    "book_select_placeholder": "Select a book you've finished...",
+    "review_title_label": "Review Title",
+    "review_title_placeholder": "A Masterpiece of Modern Fiction",
+    "review_content_label": "Review Content",
+    "review_content_placeholder": "Write your thoughts on the book...",
+    "review_description_read": "Your thoughts after finishing this book.",
+    "cancel_button": "Cancel",
+    "submitting_button": "Submitting...",
+    "submit_review_button": "Submit Review",
+    "review_created_success_toast": "Review created successfully!",
+    "options_label": "Review Options",
+    "details_link": "View Review Details",
+    "edit_link": "Edit Review",
+    "book_details_link": "View Book Details",
+    "delete_review_action": "Delete Review",
+    "by_author": "by {author}",
+    "created_at": "Created: {date}",
+    "updated_at": "Updated: {date}",
+    "delete_dialog": {
+      "title": "Are you absolutely sure?",
+      "description": "This action cannot be undone. This will permanently delete your review.",
+      "cancel_button": "Cancel",
+      "deleting_button": "Deleting...",
+      "delete_permanently_button": "Delete Permanently",
+      "delete_success_toast": "Review deleted successfully."
+    }
+  }
+}

@@ -7,7 +7,7 @@ import { ArrowLeft, Edit } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import NoCoverFound from "../../../../../public/no-cover.png";
+import NoCoverFound from "@/public/no-cover.png";
 
 export default async function DetailBookRoute({
   params,

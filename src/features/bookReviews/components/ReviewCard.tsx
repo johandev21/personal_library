@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { format } from "date-fns";
 import { MoreVertical, Edit, Trash2, Book } from "lucide-react";
 
 import {
@@ -23,12 +22,15 @@ import { Button } from "@/components/ui/button";
 import { DeleteReviewDialog } from "./DeleteReviewDialog";
 import { ReviewWithBook } from "../types";
 import { formatDateTime } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface BookReviewCardProps {
   review: ReviewWithBook;
 }
 
 export function BookReviewCard({ review }: BookReviewCardProps) {
+  const t = useTranslations("Reviews");
+
   return (
     <Card className="relative flex flex-col overflow-hidden rounded-lg shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:bg-card">
       <div className="absolute top-2 right-2 z-10">
@@ -40,7 +42,7 @@ export function BookReviewCard({ review }: BookReviewCardProps) {
               className="h-8 w-8 rounded-full"
             >
               <MoreVertical className="h-4 w-4" />
-              <span className="sr-only">Review Options</span>
+              <span className="sr-only">{t("options_label")}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -50,7 +52,7 @@ export function BookReviewCard({ review }: BookReviewCardProps) {
                 className="cursor-pointer"
               >
                 <Book className="mr-2 h-4 w-4" />
-                <span>View Review Details</span>
+                <span>{t("details_link")}</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
@@ -59,7 +61,7 @@ export function BookReviewCard({ review }: BookReviewCardProps) {
                 className="cursor-pointer"
               >
                 <Edit className="mr-2 h-4 w-4" />
-                <span>Edit Review</span>
+                <span>{t("edit_link")}</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
@@ -68,7 +70,7 @@ export function BookReviewCard({ review }: BookReviewCardProps) {
                 className="cursor-pointer"
               >
                 <Book className="mr-2 h-4 w-4" />
-                <span>View Book Details</span>
+                <span>{t("book_details_link")}</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -78,7 +80,7 @@ export function BookReviewCard({ review }: BookReviewCardProps) {
                 className="cursor-pointer"
               >
                 <Trash2 className="mr-2 h-4 w-4" />
-                <span>Delete Review</span>
+                <span>{t("delete_review_action")}</span>
               </DropdownMenuItem>
             </DeleteReviewDialog>
           </DropdownMenuContent>
@@ -102,7 +104,7 @@ export function BookReviewCard({ review }: BookReviewCardProps) {
               {review.book.title}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
-              by {review.book.author}
+              {t("by_author", { author: review.book.author })}
             </p>
           </CardHeader>
 
@@ -117,8 +119,12 @@ export function BookReviewCard({ review }: BookReviewCardProps) {
 
       <CardFooter className="border-t p-4 text-xs text-muted-foreground">
         <div className="flex justify-between w-full">
-          <span>Created: {formatDateTime(review.createdAt)}</span>
-          <span>Updated: {formatDateTime(review.updatedAt)}</span>
+          <span>
+            {t("created_at", { date: formatDateTime(review.createdAt) })}
+          </span>
+          <span>
+            {t("updated_at", { date: formatDateTime(review.updatedAt) })}
+          </span>
         </div>
       </CardFooter>
     </Card>

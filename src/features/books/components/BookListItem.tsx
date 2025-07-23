@@ -16,7 +16,7 @@ import { StarRating } from "./StarRating";
 import { Book } from "@/generated/prisma/client";
 import Link from "next/link";
 import { DeleteBookDialog } from "./DeleteBookDialog";
-import NoCoverFound from "../../../../public/no-cover.png";
+import NoCoverFound from "@/public/no-cover.png";
 
 interface BookListItemProps {
   book: Book;

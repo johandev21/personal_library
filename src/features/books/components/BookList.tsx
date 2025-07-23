@@ -1,6 +1,9 @@
+"use client";
+
 import { Book } from "@/generated/prisma/client";
 import { BookCard } from "./BookCard";
 import { BookListItem } from "./BookListItem";
+import { useTranslations } from "next-intl";
 
 interface BookListProps {
   books: Book[];
@@ -8,14 +11,16 @@ interface BookListProps {
 }
 
 export function BookList({ books, view }: BookListProps) {
+  const t = useTranslations("Books");
+
   if (books.length === 0) {
     return (
       <div className="text-center py-16 border-2 border-dashed rounded-lg">
         <h3 className="text-2xl font-semibold tracking-tight">
-          No Books Found
+          {t("no_books_found")}
         </h3>
         <p className="text-muted-foreground mt-2">
-          Try adjusting your search or filter criteria.
+          {t("no_books_found_description")}
         </p>
       </div>
     );

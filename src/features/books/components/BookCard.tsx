@@ -20,7 +20,8 @@ import { Button } from "@/components/ui/button";
 
 import { StarRating } from "./StarRating";
 import { DeleteBookDialog } from "./DeleteBookDialog"; 
-import NoCoverFound from "../../../../public/no-cover.png";
+import NoCoverFound from "@/public/no-cover.png";
+
 
 interface BookCardProps {
   book: Book;
