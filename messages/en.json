@@ -1,8 +1,4 @@
 {
-  "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
-  },
   "Dashboard": {
     "greeting": "Welcome back, {username}!",
     "buttons": {
@@ -74,7 +70,11 @@
       "title": "Add a New Book",
       "description": "Fill out the details below to add a new book to your collection."
     },
-    "create_form": {
+    "edit_page": {
+      "title": "Edit Book",
+      "description": "Update the details for \"{bookTitle}\" below."
+    },
+    "form": {
       "title_label": "Title",
       "title_placeholder": "The Way of Kings",
       "author_label": "Author",
@@ -98,10 +98,32 @@
       "rating_description": "You can only rate books you've finished.",
       "tags_label": "Tags",
       "tags_description": "Categorize your book with tags like \"Fantasy\", \"Sci-Fi\", etc.",
-      "save_success_toast": "Book created successfully!",
       "cancel_button": "Cancel",
       "saving_button": "Saving...",
-      "save_book_button": "Save Book"
+      "save_book_button": "Save Book",
+      "updating_button": "Updating...",
+      "update_book_button": "Update Book",
+      "success_toast_create": "Book created successfully!",
+      "success_toast_update": "Book updated successfully!"
+    },
+    "delete_dialog": {
+      "dropdown_delete_label": "Delete",
+      "success_toast": "Book deleted successfully!",
+      "dialog_title": "Are you absolutely sure?",
+      "dialog_description": "This action cannot be undone. This will permanently delete this book from your collection.",
+      "cancel_button": "Cancel",
+      "deleting_button": "Deleting...",
+      "continue_button": "Continue"
+    },
+    "detail_page": {
+      "back_to_list_button": "Back to list",
+      "edit_button": "Edit",
+      "author_label": "Author",
+      "rating_label": "Rating",
+      "no_rating_text": "No rating",
+      "more_options_label": "More options",
+      "edit_action_label": "Edit",
+      "delete_action_label": "Delete"
     }
   },
   "Reviews": {
@@ -140,6 +162,18 @@
       "deleting_button": "Deleting...",
       "delete_permanently_button": "Delete Permanently",
       "delete_success_toast": "Review deleted successfully."
-    }
+    },
+    "back_to_all_reviews_button": "Back to All Reviews",
+    "edit_button": "Edit",
+    "review_for_label": "Review for:",
+    "created_at_details": "Created: {date}",
+    "last_updated_at_details": "Last Updated: {date}",
+    "review_title": "{reviewTitle}",
+    "edit_page_title": "Edit Your Review",
+    "edit_page_description": "Make changes to your review below and save when you're done.",
+    "editing_review_for_label": "You are editing your review for:",
+    "updating_button": "Updating...",
+    "update_review_button": "Update Review",
+    "review_updated_success_toast": "Review updated successfully!"
   }
 }

@@ -1,6 +1,5 @@
-import {getTranslations} from 'next-intl/server';
- 
+import { redirect } from "@/i18n/navigation";
+
 export default async function HomePage() {
-  const t = await getTranslations('HomePage');
-  return <h1>{t('title')}</h1>;
+  redirect({href: '/dashboard', locale: 'en'});
 }

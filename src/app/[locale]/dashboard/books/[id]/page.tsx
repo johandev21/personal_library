@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import NoCoverFound from "@/public/no-cover.png";
+import { getTranslations } from "next-intl/server";
 
 export default async function DetailBookRoute({
   params,
@@ -15,25 +16,28 @@ export default async function DetailBookRoute({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-
   const book = await getBookById(id);
 
   if (!book) {
     notFound();
   }
 
+  const t = await getTranslations("Books.detail_page");
+
+  const formattedBookState = book.states.replace(/_/g, " ");
+
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <Link href="/dashboard/books">
           <Button variant="ghost">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to list
+            <ArrowLeft className="mr-2 h-4 w-4" /> {t("back_to_list_button")}
           </Button>
         </Link>
         <div className="flex gap-2">
           <Link href={`/dashboard/books/${id}/edit`}>
             <Button variant="outline">
-              <Edit className="mr-2 h-4 w-4" /> Edit
+              <Edit className="mr-2 h-4 w-4" /> {t("edit_button")}
             </Button>
           </Link>
           <DeleteBookDialog bookId={book.id} triggerVariant="button" />
@@ -44,7 +48,7 @@ export default async function DetailBookRoute({
         <CardHeader>
           <CardTitle className="text-2xl font-bold flex items-center gap-2">
             {book.title}
-            <Badge variant="secondary">{book.states.replace(/_/g, " ")}</Badge>
+            <Badge variant="secondary">{formattedBookState}</Badge>
           </CardTitle>
         </CardHeader>
         <CardContent className="grid md:grid-cols-3 gap-6">
@@ -60,16 +64,20 @@ export default async function DetailBookRoute({
 
           <div className="md:col-span-2 space-y-4">
             <div>
-              <p className="text-sm text-muted-foreground">Author</p>
+              <p className="text-sm text-muted-foreground">
+                {t("author_label")}
+              </p>
               <p className="text-lg font-medium">{book.author}</p>
             </div>
 
             <div>
-              <p className="text-sm text-muted-foreground">Rating</p>
+              <p className="text-sm text-muted-foreground">
+                {t("rating_label")}
+              </p>
               <p className="text-lg font-medium">
                 {book.rating
                   ? `${"⭐️".repeat(book.rating)} (${book.rating}/5)`
-                  : "No rating"}
+                  : t("no_rating_text")}
               </p>
             </div>
 

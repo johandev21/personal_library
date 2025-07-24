@@ -18,6 +18,7 @@ import { deleteBook } from "../actions";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 type trigger = "dropdown-item" | "button";
 
@@ -31,6 +32,7 @@ export function DeleteBookDialog({
   triggerVariant,
 }: DeleteBookDialogProps) {
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("Books.delete_dialog");
 
   const router = useRouter();
 
@@ -38,12 +40,15 @@ export function DeleteBookDialog({
     startTransition(async () => {
       const result = await deleteBook(bookId);
       if (result?.error) {
-        toast(result.error);
+        toast.error(result.error);
         if (triggerVariant === "button") {
           router.push("/dashboard/books");
         }
       } else {
-        toast.success("Book deleted successfully!");
+        toast.success(t("success_toast"));
+        if (triggerVariant === "button") {
+          router.push("/dashboard/books");
+        }
       }
     });
   };
@@ -57,13 +62,13 @@ export function DeleteBookDialog({
         className="flex items-center gap-2 cursor-pointer"
       >
         <Trash2 className="mr-2 h-4 w-4" />
-        <span>Delete</span>
+        <span>{t("dropdown_delete_label")}</span>
       </DropdownMenuItem>
     );
   } else {
     triggerElement = (
       <Button variant="destructive">
-        <Trash2 className="mr-2 h-4 w-4" /> Delete
+        <Trash2 className="mr-2 h-4 w-4" /> {t("dropdown_delete_label")}
       </Button>
     );
   }
@@ -74,16 +79,17 @@ export function DeleteBookDialog({
 
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>{t("dialog_title")}</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete this book
-            from your collection.
+            {t("dialog_description")}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={isPending}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel disabled={isPending}>
+            {t("cancel_button")}
+          </AlertDialogCancel>
           <AlertDialogAction disabled={isPending} onClick={handleDelete}>
-            {isPending ? "Deleting..." : "Continue"}
+            {isPending ? t("deleting_button") : t("continue_button")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

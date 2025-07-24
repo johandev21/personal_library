@@ -4,6 +4,8 @@ import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 import { BookCreateData, bookCreateSchema } from "../../schemas";
 import { createBook } from "../../actions";
@@ -28,13 +30,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { BookTagsInput } from "../BookTagsInput";
-import { toast } from "sonner";
-import { useTranslations } from "next-intl";
 
 export function BookCreateForm() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const t = useTranslations("Books.create_form");
+  const t = useTranslations("Books.form");
 
   const form = useForm({
     resolver: zodResolver(bookCreateSchema),
@@ -55,7 +55,8 @@ export function BookCreateForm() {
       if (result?.error) {
         toast.error(result.error);
       } else {
-        toast.success(t("save_success_toast")); // Use translated toast message
+        // Access the create success toast using 't'
+        toast.success(t("success_toast_create"));
         router.push("/dashboard/books");
       }
     });
@@ -114,9 +115,7 @@ export function BookCreateForm() {
                     autoComplete="off"
                   />
                 </FormControl>
-                <FormDescription>
-                  {t("cover_description")}
-                </FormDescription>
+                <FormDescription>{t("cover_description")}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -140,8 +139,12 @@ export function BookCreateForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="want_to_read">{t("status_want_to_read")}</SelectItem>
-                    <SelectItem value="reading">{t("status_reading")}</SelectItem>
+                    <SelectItem value="want_to_read">
+                      {t("status_want_to_read")}
+                    </SelectItem>
+                    <SelectItem value="reading">
+                      {t("status_reading")}
+                    </SelectItem>
                     <SelectItem value="read">{t("status_read")}</SelectItem>
                   </SelectContent>
                 </Select>
@@ -175,9 +178,7 @@ export function BookCreateForm() {
                     <SelectItem value="5">{t("rating_excellent")}</SelectItem>
                   </SelectContent>
                 </Select>
-                <FormDescription>
-                  {t("rating_description")}
-                </FormDescription>
+                <FormDescription>{t("rating_description")}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -193,9 +194,7 @@ export function BookCreateForm() {
               <FormControl>
                 <BookTagsInput value={field.value} onChange={field.onChange} />
               </FormControl>
-              <FormDescription>
-                {t("tags_description")}
-              </FormDescription>
+              <FormDescription>{t("tags_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}

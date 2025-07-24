@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import { MoreHorizontal, Edit } from "lucide-react";
@@ -17,12 +19,19 @@ import { Book } from "@/generated/prisma/client";
 import Link from "next/link";
 import { DeleteBookDialog } from "./DeleteBookDialog";
 import NoCoverFound from "@/public/no-cover.png";
+import { useTranslations } from "next-intl";
 
 interface BookListItemProps {
   book: Book;
 }
 
 export const BookListItem = ({ book }: BookListItemProps) => {
+  const t = useTranslations("Books.detail_page");
+
+  const formattedBookState = book.states
+    .replace("_", " ")
+    .replace(/\b\w/g, (l) => l.toUpperCase());
+
   return (
     <Card className="w-full grid grid-cols-5 items-center p-3 gap-4 transition-all hover:bg-accent/30">
       <Image
@@ -69,23 +78,21 @@ export const BookListItem = ({ book }: BookListItemProps) => {
           className="hidden lg:inline-flex"
           variant={book.states === "read" ? "default" : "secondary"}
         >
-          {book.states
-            .replace("_", " ")
-            .replace(/\b\w/g, (l) => l.toUpperCase())}
+          {formattedBookState}
         </Badge>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon" className="h-8 w-8">
               <MoreHorizontal className="h-4 w-4" />
-              <span className="sr-only">More options</span>
+              <span className="sr-only">{t("more_options_label")}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <Link href={`/dashboard/books/${book.id}/edit`}>
               <DropdownMenuItem>
                 <Edit className="mr-2 h-4 w-4" />
-                <span>Edit</span>
+                <span>{t("edit_action_label")}</span>
               </DropdownMenuItem>
             </Link>
             <DeleteBookDialog bookId={book.id} triggerVariant="dropdown-item" />

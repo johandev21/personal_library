@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { getBookById } from "@/features/books/queries";
 import { BookEditForm } from "@/features/books/components/forms/BookEditForm";
+import { getTranslations } from "next-intl/server";
 
 export default async function EditBookPage({
   params,
@@ -21,13 +22,15 @@ export default async function EditBookPage({
     notFound();
   }
 
+  const tPage = await getTranslations("Books.edit_page");
+
   return (
     <div className="mx-auto max-w-2xl py-8">
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Edit Book</CardTitle>
+          <CardTitle className="text-2xl">{tPage("title")}</CardTitle>
           <CardDescription>
-            Update the details for "{book.title}" below.
+            {tPage("description", { bookTitle: book.title })}
           </CardDescription>
         </CardHeader>
         <CardContent>

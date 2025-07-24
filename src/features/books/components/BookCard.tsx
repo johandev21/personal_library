@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { MoreHorizontal, Edit } from "lucide-react";
 import Link from "next/link";
@@ -19,15 +21,21 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { StarRating } from "./StarRating";
-import { DeleteBookDialog } from "./DeleteBookDialog"; 
+import { DeleteBookDialog } from "./DeleteBookDialog";
 import NoCoverFound from "@/public/no-cover.png";
-
+import { useTranslations } from "next-intl";
 
 interface BookCardProps {
   book: Book;
 }
 
 export function BookCard({ book }: BookCardProps) {
+  const t = useTranslations("Books.detail_page"); 
+
+  const formattedBookState = book.states
+    .replace("_", " ")
+    .replace(/\b\w/g, (l) => l.toUpperCase());
+
   return (
     <Card className="w-full transition-all hover:bg-accent/30 overflow-hidden pb-0 gap-2 relative">
       <Link href={`/dashboard/books/${book.id}`}>
@@ -52,9 +60,7 @@ export function BookCard({ book }: BookCardProps) {
       </Link>
       <CardFooter className="flex-col items-start gap-2 p-4 pt-0">
         <Badge variant={book.states === "read" ? "default" : "secondary"}>
-          {book.states
-            .replace("_", " ")
-            .replace(/\b\w/g, (l) => l.toUpperCase())}
+          {formattedBookState}
         </Badge>
         <div className="flex gap-1 flex-wrap">
           {book.tags.slice(0, 2).map((tag) => (
@@ -72,14 +78,14 @@ export function BookCard({ book }: BookCardProps) {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon" className="h-8 w-8">
               <MoreHorizontal className="h-4 w-4" />
-              <span className="sr-only">More options</span>
+              <span className="sr-only">{t("more_options_label")}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <Link href={`/dashboard/books/${book.id}/edit`}>
               <DropdownMenuItem>
                 <Edit className="mr-2 h-4 w-4" />
-                <span>Edit</span>
+                <span>{t("edit_action_label")}</span>
               </DropdownMenuItem>
             </Link>
             <DeleteBookDialog bookId={book.id} triggerVariant="dropdown-item" />

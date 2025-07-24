@@ -74,19 +74,19 @@
       "title": "Añadir un Nuevo Libro",
       "description": "Rellena los detalles a continuación para añadir un nuevo libro a tu colección."
     },
-    "create_form": {
+    "form": {
       "title_label": "Título",
       "title_placeholder": "El Camino de los Reyes",
       "author_label": "Autor",
       "author_placeholder": "Brandon Sanderson",
-      "cover_label": "URL de la imagen de portada",
+      "cover_label": "URL de la portada",
       "cover_placeholder": "https://ejemplo.com/portada.jpg",
       "cover_description": "Pega la URL completa de la imagen de portada del libro.",
       "status_label": "Estado",
       "status_placeholder": "Selecciona el estado del libro",
-      "status_want_to_read": "Quiero leer",
+      "status_want_to_read": "Quiero leerlo",
       "status_reading": "Leyendo actualmente",
-      "status_read": "Lectura finalizada",
+      "status_read": "Leído",
       "rating_label": "Calificación",
       "rating_placeholder": "Califica este libro (1-5)",
       "rating_none": "Sin calificación",
@@ -97,11 +97,33 @@
       "rating_excellent": "⭐️⭐️⭐️⭐️⭐️ Excelente",
       "rating_description": "Solo puedes calificar libros que hayas terminado.",
       "tags_label": "Etiquetas",
-      "tags_description": "Categoriza tu libro con etiquetas como \"Fantasía\", \"Ciencia Ficción\", etc.",
-      "save_success_toast": "¡Libro creado con éxito!",
+      "tags_description": "Categoriza tu libro con etiquetas como \"Fantasía\", \"Ciencia ficción\", etc.",
       "cancel_button": "Cancelar",
       "saving_button": "Guardando...",
-      "save_book_button": "Guardar Libro"
+      "save_book_button": "Guardar libro",
+      "updating_button": "Actualizando...",
+      "update_book_button": "Actualizar libro",
+      "success_toast_create": "¡Libro creado con éxito!",
+      "success_toast_update": "¡Libro actualizado con éxito!"
+    },
+    "delete_dialog": {
+      "dropdown_delete_label": "Eliminar",
+      "success_toast": "¡Libro eliminado con éxito!",
+      "dialog_title": "¿Estás absolutamente seguro?",
+      "dialog_description": "Esta acción no se puede deshacer. Eliminará permanentemente este libro de tu colección.",
+      "cancel_button": "Cancelar",
+      "deleting_button": "Eliminando...",
+      "continue_button": "Continuar"
+    },
+    "detail_page": {
+      "back_to_list_button": "Volver a la lista",
+      "edit_button": "Editar",
+      "author_label": "Autor",
+      "rating_label": "Calificación",
+      "no_rating_text": "Sin calificación",
+      "more_options_label": "Más opciones",
+      "edit_action_label": "Editar",
+      "delete_action_label": "Eliminar"
     }
   },
   "Reviews": {
@@ -140,6 +162,18 @@
       "deleting_button": "Eliminando...",
       "delete_permanently_button": "Eliminar Permanentemente",
       "delete_success_toast": "Reseña eliminada con éxito."
-    }
+    },
+    "back_to_all_reviews_button": "Volver a Todas las Reseñas",
+    "edit_button": "Editar",
+    "review_for_label": "Reseña de:",
+    "created_at_details": "Creado: {date}",
+    "last_updated_at_details": "Última Actualización: {date}",
+    "review_title": "{reviewTitle}",
+    "edit_page_title": "Editar Tu Reseña",
+    "edit_page_description": "Haz cambios en tu reseña a continuación y guarda cuando termines.",
+    "editing_review_for_label": "Estás editando tu reseña para:",
+    "updating_button": "Actualizando...",
+    "update_review_button": "Actualizar Reseña",
+    "review_updated_success_toast": "¡Reseña actualizada con éxito!"
   }
 }

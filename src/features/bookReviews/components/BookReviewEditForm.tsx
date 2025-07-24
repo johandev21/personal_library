@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Book } from "@/generated/prisma/client";
+import { useTranslations } from "next-intl";
 
 interface BookReviewEditFormProps {
   review: {
@@ -34,6 +35,7 @@ interface BookReviewEditFormProps {
 export function BookReviewEditForm({ review }: BookReviewEditFormProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("Reviews");
 
   const form = useForm<ReviewUpdateData>({
     resolver: zodResolver(reviewUpdateSchema),
@@ -49,7 +51,7 @@ export function BookReviewEditForm({ review }: BookReviewEditFormProps) {
       if (result?.error) {
         toast.error(result.error);
       } else {
-        toast.success("Review updated successfully!");
+        toast.success(t("review_updated_success_toast"));
         router.push("/dashboard/books/reviews");
       }
     });
@@ -59,7 +61,7 @@ export function BookReviewEditForm({ review }: BookReviewEditFormProps) {
     <div className="space-y-6">
       <div className="p-4 border rounded-lg bg-muted/50">
         <p className="text-sm font-medium text-muted-foreground">
-          You are editing your review for:
+          {t("editing_review_for_label")}
         </p>
         <p className="text-lg font-semibold">{review.book.title}</p>
       </div>
@@ -71,9 +73,9 @@ export function BookReviewEditForm({ review }: BookReviewEditFormProps) {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Review Title</FormLabel>
+                <FormLabel>{t("review_title_label")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="A Masterpiece of Modern Fiction" {...field} />
+                  <Input placeholder={t("review_title_placeholder")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -85,10 +87,10 @@ export function BookReviewEditForm({ review }: BookReviewEditFormProps) {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Review Content</FormLabel>
+                <FormLabel>{t("review_content_label")}</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Write your thoughts on the book..."
+                    placeholder={t("review_content_placeholder")}
                     className="min-h-[200px]"
                     {...field}
                   />
@@ -100,10 +102,10 @@ export function BookReviewEditForm({ review }: BookReviewEditFormProps) {
 
           <div className="flex justify-end gap-2 pt-4">
             <Button type="button" variant="outline" onClick={() => router.back()} disabled={isPending}>
-              Cancel
+              {t("cancel_button")}
             </Button>
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Updating..." : "Update Review"}
+              {isPending ? t("updating_button") : t("update_review_button")}
             </Button>
           </div>
         </form>
