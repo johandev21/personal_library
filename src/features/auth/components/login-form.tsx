@@ -59,7 +59,6 @@ export function LoginForm({
       }
     } catch (err) {
       console.error("An unexpected network or server error occurred:", err);
-      // Using the translated message here as well for consistency
       toast.error("An unexpected error occurred. Please try again.");
     } finally {
       setIsLoading(false);
