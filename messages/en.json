@@ -1,4 +1,16 @@
 {
+  "Header": {
+    "nav_links": {
+      "dashboard": "Dashboard",
+      "books": "Books",
+      "reviews": "Reviews"
+    },
+    "signin_redirect": "Sign in"
+  },
+  "UserMenu": {
+    "fallback_name": "User",
+    "logout_label": "Log out"
+  },
   "Dashboard": {
     "greeting": "Welcome back, {username}!",
     "buttons": {

@@ -6,7 +6,6 @@ import { revalidatePath } from "next/cache";
 import z from "zod";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
- 
 
 export async function getAuthenticatedUserId() {
   const session = await auth.api.getSession({
@@ -14,7 +13,7 @@ export async function getAuthenticatedUserId() {
   });
 
   if (!session || !session.user?.id) {
-    redirect("/signin")
+    redirect("/en/signin");
   }
 
   return session?.user.id;
@@ -22,11 +21,11 @@ export async function getAuthenticatedUserId() {
 
 export const signUp = async (values: z.infer<typeof signupFormSchema>) => {
   const validatedFields = signupFormSchema.safeParse(values);
-  
+
   if (!validatedFields.success) {
     return { error: "Invalid fields." };
   }
-  
+
   try {
     await auth.api.signUpEmail({
       body: validatedFields.data,
@@ -43,7 +42,7 @@ export const signIn = async (values: z.infer<typeof loginFormSchema>) => {
   if (!validatedFields.success) {
     return { error: "Invalid fields." };
   }
-  
+
   try {
     await auth.api.signInEmail({
       body: validatedFields.data,

@@ -22,15 +22,15 @@ export default async function EditBookPage({
     notFound();
   }
 
-  const tPage = await getTranslations("Books.edit_page");
+  const t = await getTranslations("Books.edit_page");
 
   return (
     <div className="mx-auto max-w-2xl py-8">
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">{tPage("title")}</CardTitle>
+          <CardTitle className="text-2xl">{t("title")}</CardTitle>
           <CardDescription>
-            {tPage("description", { bookTitle: book.title })}
+            {t("description", { bookTitle: book.title })}
           </CardDescription>
         </CardHeader>
         <CardContent>

@@ -73,7 +73,7 @@ export async function createReview(values: ReviewCreateData) {
         title,
         content,
         bookId,
-        userId,
+        userId: userId!,
       },
     });
   } catch (error) {

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 
@@ -15,24 +14,30 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { redirect } from "next/navigation";
 import { ModeToggle } from "./mode-toggle";
+import { Link, redirect } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 
-const navigationLinks = [
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/dashboard/books", label: "Books" },
-  { href: "/dashboard/books/reviews", label: "Reviews" },
-];
+const getNavigationLinks = async () => {
+  const t = await getTranslations("Header.nav_links");
+  return [
+    { href: "/dashboard", label: t("dashboard") },
+    { href: "/dashboard/books", label: t("books") },
+    { href: "/dashboard/books/reviews", label: t("reviews") },
+  ];
+};
 
 export default async function Header() {
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (!session) {
-    redirect("/signin");
+    redirect({ href: "/signin", locale: "en" });
   }
 
+  const navigationLinks = await getNavigationLinks();
+
   return (
-    <header className="border-b px-4 md:px-6 bg-background/90 backdrop-blur-xs dark:bg-card/80 dark:backdrop-blur-xs">
+    <header className="border-b px-4 md:px-6 bg-card/90 dark:bg-card/80 backdrop-blur-lg">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <Popover>
@@ -72,11 +77,10 @@ export default async function Header() {
             <PopoverContent align="start" className="w-36 p-1 md:hidden">
               <NavigationMenu className="max-w-none *:w-full">
                 <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
-                  {navigationLinks.map((link, index) => (
-                    <NavigationMenuItem key={index} className="w-full">
+                  {navigationLinks.map((link) => (
+                    <NavigationMenuItem key={link.href} className="w-full">
                       <NavigationMenuLink href={link.href} className="py-1.5">
-                        {" "}
-                        {link.label}{" "}
+                        {link.label}
                       </NavigationMenuLink>
                     </NavigationMenuItem>
                   ))}
@@ -87,14 +91,13 @@ export default async function Header() {
           <div className="flex items-center gap-6">
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-2">
-                {navigationLinks.map((link, index) => (
-                  <NavigationMenuItem key={index}>
+                {navigationLinks.map((link) => (
+                  <NavigationMenuItem key={link.href}>
                     <Link
                       href={link.href}
                       className="text-muted-foreground py-1.5 font-medium hover:bg-accent focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 [&_svg:not([class*='text-'])]:text-muted-foreground flex flex-col gap-1 rounded-sm p-2 text-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4"
                     >
-                      {" "}
-                      {link.label}{" "}
+                      {link.label}
                     </Link>
                   </NavigationMenuItem>
                 ))}

@@ -31,7 +31,7 @@ export async function createBook(values: BookCreateData) {
     await prisma.book.create({
       data: {
         ...validatedFields.data,
-        userId: userId,
+        userId: userId!,
       },
     });
   } catch (error) {

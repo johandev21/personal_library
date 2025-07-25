@@ -1,4 +1,16 @@
 {
+  "Header": {
+    "nav_links": {
+      "dashboard": "Dashboard",
+      "books": "Libros",
+      "reviews": "Reseñas"
+    },
+    "signin_redirect": "Iniciar sesión"
+  },
+  "UserMenu": {
+    "fallback_name": "Usuario",
+    "logout_label": "Cerrar sesión"
+  },
   "HomePage": {
     "title": "Hello world!",
     "about": "Go to the about page"
@@ -73,6 +85,10 @@
     "create_page": {
       "title": "Añadir un Nuevo Libro",
       "description": "Rellena los detalles a continuación para añadir un nuevo libro a tu colección."
+    },
+    "edit_page": {
+      "title": "Editar Libro",
+      "description": "Actualiza los detalles de \"{bookTitle}\" a continuación."
     },
     "form": {
       "title_label": "Título",

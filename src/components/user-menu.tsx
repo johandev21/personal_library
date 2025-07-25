@@ -1,7 +1,7 @@
 "use client";
 
 import { LogOutIcon } from "lucide-react";
-import {useRouter} from '@/i18n/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { authClient } from "@/lib/auth-client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -14,6 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTranslations } from "next-intl";
 
 interface Session {
   user: {
@@ -30,13 +31,14 @@ interface UserMenuProps {
 
 export default function UserMenu({ session }: UserMenuProps) {
   const router = useRouter();
+  const t = useTranslations("UserMenu"); 
 
   if (!session) {
     return null;
   }
 
   const { user } = session;
-  const userName = user.name || "User";
+  const userName = user.name || t("fallback_name");
   const userEmail = user.email || "";
   const userImage = user.image || "";
 
@@ -88,7 +90,7 @@ export default function UserMenu({ session }: UserMenuProps) {
           className="cursor-pointer"
         >
           <LogOutIcon className="mr-2 h-4 w-4" />
-          <span>Log out</span>
+          <span>{t("logout_label")}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
