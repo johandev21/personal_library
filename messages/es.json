@@ -7,6 +7,12 @@
     },
     "signin_redirect": "Iniciar sesión"
   },
+  "ModeToggle": {
+    "toggle_theme_label": "Cambiar tema",
+    "light_mode_label": "Claro",
+    "dark_mode_label": "Oscuro",
+    "system_mode_label": "Sistema"
+  },
   "UserMenu": {
     "fallback_name": "Usuario",
     "logout_label": "Cerrar sesión"
@@ -90,6 +96,18 @@
       "title": "Editar Libro",
       "description": "Actualiza los detalles de \"{bookTitle}\" a continuación."
     },
+    "filters": {
+      "search_placeholder": "Buscar por título o autor...",
+      "status_label": "Filtrar por estado",
+      "status_all": "Todos los estados",
+      "status_reading": "Leyendo",
+      "status_want_to_read": "Quiero leer",
+      "status_read": "Leído",
+      "tags_dropdown_label": "Filtrar por etiquetas",
+      "tags_filter_label": "Filtrar etiquetas ({count})",
+      "view_toggle_grid_label": "Cambiar a vista de cuadrícula",
+      "view_toggle_list_label": "Cambiar a vista de lista"
+    },
     "form": {
       "title_label": "Título",
       "title_placeholder": "El Camino de los Reyes",
@@ -161,7 +179,7 @@
     "review_description_read": "Tus pensamientos después de terminar este libro.",
     "cancel_button": "Cancelar",
     "submitting_button": "Enviando...",
-    "submit_review_button": "Enviar Reseña",
+    "submit_review_button": "Crear Reseña",
     "review_created_success_toast": "¡Reseña creada exitosamente!",
     "options_label": "Opciones de la Reseña",
     "details_link": "Ver Detalles de la Reseña",

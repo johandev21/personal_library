@@ -7,6 +7,12 @@
     },
     "signin_redirect": "Sign in"
   },
+  "ModeToggle": {
+    "toggle_theme_label": "Toggle theme",
+    "light_mode_label": "Light",
+    "dark_mode_label": "Dark",
+    "system_mode_label": "System"
+  },
   "UserMenu": {
     "fallback_name": "User",
     "logout_label": "Log out"
@@ -85,6 +91,18 @@
     "edit_page": {
       "title": "Edit Book",
       "description": "Update the details for \"{bookTitle}\" below."
+    },
+    "filters": {
+      "search_placeholder": "Search by title or author...",
+      "status_label": "Filter by status",
+      "status_all": "All Statuses",
+      "status_reading": "Reading",
+      "status_want_to_read": "Want to Read",
+      "status_read": "Read",
+      "tags_dropdown_label": "Filter by tags",
+      "tags_filter_label": "Filter Tags ({count})",
+      "view_toggle_grid_label": "Toggle grid",
+      "view_toggle_list_label": "Toggle list"
     },
     "form": {
       "title_label": "Title",
