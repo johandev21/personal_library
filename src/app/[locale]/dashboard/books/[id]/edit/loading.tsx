@@ -1,10 +1,9 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { BookFormSkeleton } from "@/features/books/components/skeletons/BookFormSkeleton";
 
 export default function EditBookLoading() {
@@ -12,8 +11,8 @@ export default function EditBookLoading() {
     <div className="mx-auto max-w-2xl py-8">
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Edit Book</CardTitle>
-          <CardDescription>Update the details for "" below.</CardDescription>
+          <Skeleton className="h-8 w-32" />
+          <Skeleton className="h-4 w-3/4 pt-2" />
         </CardHeader>
         <CardContent>
           <BookFormSkeleton />

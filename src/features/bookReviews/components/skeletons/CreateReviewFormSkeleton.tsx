@@ -1,50 +1,27 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function CreateReviewFormSkeleton() {
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="book-select-skeleton">Book to Review</Label>
-        <Select disabled>
-          <SelectTrigger id="book-select-skeleton">
-            <SelectValue placeholder="Select a book you've finished..." />
-          </SelectTrigger>
-        </Select>
-        <p className="text-sm text-muted-foreground">
-          You can only review books you've marked as "Read".
-        </p>
+        <Skeleton className="h-4 w-32" />
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-4 w-full max-w-sm" />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="title-skeleton">Review Title</Label>
-        <Input
-          id="title-skeleton"
-          placeholder="A Masterpiece of Modern Fiction"
-          disabled
-        />
+        <Skeleton className="h-4 w-24" />
+        <Skeleton className="h-10 w-full" />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="content-skeleton">Review Content</Label>
-        <Textarea
-          id="content-skeleton"
-          placeholder="Write your thoughts on the book..."
-          className="min-h-[150px]"
-          disabled
-        />
+        <Skeleton className="h-4 w-28" />
+        <Skeleton className="h-[150px] w-full" />
       </div>
 
       <div className="flex justify-end gap-2 pt-4">
-        <Button type="button" variant="outline" disabled>
-          Cancel
-        </Button>
-        <Button type="submit" disabled>
-          Submit Review
-        </Button>
+        <Skeleton className="h-10 w-20" />
+        <Skeleton className="h-10 w-28" />
       </div>
     </div>
   );
