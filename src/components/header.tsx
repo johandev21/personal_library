@@ -35,7 +35,7 @@ export default async function Header() {
   const navigationLinks = await getNavigationLinks();
 
   return (
-    <header className="border-b px-4 md:px-6 bg-card/90 dark:bg-card/80 backdrop-blur-lg">
+    <header className="border-b px-4 md:px-6 bg-card backdrop-blur-lg">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <Popover>
