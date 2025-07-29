@@ -40,9 +40,12 @@ export function BookEditForm({ book }: BookEditFormProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const t = useTranslations("Books.form");
+  const tValidations = useTranslations("Books.Validations");
+
+  const schema = bookUpdateSchema(tValidations);
 
   const form = useForm({
-    resolver: zodResolver(bookUpdateSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       title: book.title,
       author: book.author,
@@ -119,9 +122,7 @@ export function BookEditForm({ book }: BookEditFormProps) {
                     autoComplete="off"
                   />
                 </FormControl>
-                <FormDescription>
-                  {t("cover_description")}
-                </FormDescription>
+                <FormDescription>{t("cover_description")}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -145,8 +146,12 @@ export function BookEditForm({ book }: BookEditFormProps) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="want_to_read">{t("status_want_to_read")}</SelectItem>
-                    <SelectItem value="reading">{t("status_reading")}</SelectItem>
+                    <SelectItem value="want_to_read">
+                      {t("status_want_to_read")}
+                    </SelectItem>
+                    <SelectItem value="reading">
+                      {t("status_reading")}
+                    </SelectItem>
                     <SelectItem value="read">{t("status_read")}</SelectItem>
                   </SelectContent>
                 </Select>
@@ -180,9 +185,7 @@ export function BookEditForm({ book }: BookEditFormProps) {
                     <SelectItem value="5">{t("rating_excellent")}</SelectItem>
                   </SelectContent>
                 </Select>
-                <FormDescription>
-                  {t("rating_description")}
-                </FormDescription>
+                <FormDescription>{t("rating_description")}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -198,9 +201,7 @@ export function BookEditForm({ book }: BookEditFormProps) {
               <FormControl>
                 <BookTagsInput value={field.value} onChange={field.onChange} />
               </FormControl>
-              <FormDescription>
-                {t("tags_description")}
-              </FormDescription>
+              <FormDescription>{t("tags_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}

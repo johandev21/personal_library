@@ -9,6 +9,7 @@ import {
   reviewUpdateSchema,
   ReviewUpdateData,
 } from "./schemas";
+import { getTranslations } from "next-intl/server";
 
 export async function getReviewableBooks() {
   const userId = await getAuthenticatedUserId();
@@ -35,18 +36,23 @@ export async function getReviewableBooks() {
 }
 
 export async function createReview(values: ReviewCreateData) {
+  const tServerActions = await getTranslations("Reviews.ServerActions");
+  const tValidations = await getTranslations("Reviews.Validations");
+
   let userId;
   try {
     userId = await getAuthenticatedUserId();
   } catch (error) {
     if (error instanceof Error)
-      return { error: `Authentication Error: ${error.message}` };
-    return { error: "An unknown authentication error occurred." };
+      return { error: tServerActions("errors.auth_required") };
+    return { error: tServerActions("errors.auth_required") };
   }
 
-  const validatedFields = reviewCreateSchema.safeParse(values);
+  const schema = reviewCreateSchema(tValidations);
+  const validatedFields = schema.safeParse(values);
+
   if (!validatedFields.success) {
-    return { error: "Invalid Fields." };
+    return { error: tServerActions("errors.invalid_fields") };
   }
 
   const { bookId, title, content } = validatedFields.data;
@@ -57,7 +63,9 @@ export async function createReview(values: ReviewCreateData) {
     });
     if (!book) {
       return {
-        error: "Book not found or you don't have permission to review it.",
+        error: tServerActions(
+          "errors.book_not_found_or_unauthorized_to_review"
+        ),
       };
     }
 
@@ -65,7 +73,7 @@ export async function createReview(values: ReviewCreateData) {
       where: { bookId },
     });
     if (existingReview) {
-      return { error: "You have already submitted a review for this book." };
+      return { error: tServerActions("errors.existing_review") };
     }
 
     await prisma.bookReview.create({
@@ -76,34 +84,38 @@ export async function createReview(values: ReviewCreateData) {
         userId: userId!,
       },
     });
+    revalidatePath("/dashboard/books/reviews");
+    revalidatePath(`/dashboard/books/${bookId}`);
+    return { success: tServerActions("success.review_created") };
   } catch (error) {
     console.error("Database Error:", error);
-    return { error: "Database Error: Failed to create the review." };
+    return { error: tServerActions("errors.db_error_create") };
   }
-
-  revalidatePath("/dashboard/books/reviews");
-  revalidatePath(`/dashboard/books/${bookId}`);
-  return { success: true };
 }
 
 export async function updateReview(id: string, values: ReviewUpdateData) {
+  const tServerActions = await getTranslations("Reviews.ServerActions");
+  const tValidations = await getTranslations("Reviews.Validations");
+
   let userId;
   try {
     userId = await getAuthenticatedUserId();
   } catch (error) {
-    return { error: "Authentication Error: User not found." };
+    return { error: tServerActions("errors.auth_user_not_found") };
   }
 
   const review = await prisma.bookReview.findUnique({ where: { id, userId } });
   if (!review) {
     return {
-      error: "Review not found or you don't have permission to edit it.",
+      error: tServerActions("errors.review_not_found_or_unauthorized"),
     };
   }
 
-  const validatedFields = reviewUpdateSchema.safeParse(values);
+  const schema = reviewUpdateSchema(tValidations);
+  const validatedFields = schema.safeParse(values);
+
   if (!validatedFields.success) {
-    return { error: "Invalid fields." };
+    return { error: tServerActions("errors.invalid_fields") };
   }
 
   try {
@@ -111,36 +123,38 @@ export async function updateReview(id: string, values: ReviewUpdateData) {
       where: { id: id },
       data: validatedFields.data,
     });
+    revalidatePath(`/dashboard/books/reviews`);
+    revalidatePath(`/dashboard/books/reviews/${id}/edit`);
+    return { success: tServerActions("success.review_updated") };
   } catch (error) {
-    return { error: "Database Error: Failed to update review." };
+    console.error("Database Error:", error);
+    return { error: tServerActions("errors.db_error_update") };
   }
-
-  revalidatePath(`/dashboard/books/reviews`);
-  revalidatePath(`/dashboard/books/reviews/${id}/edit`);
-  return { success: true };
 }
 
 export async function deleteReview(id: string) {
+  const tServerActions = await getTranslations("Reviews.ServerActions");
+
   let userId;
   try {
     userId = await getAuthenticatedUserId();
   } catch (error) {
-    return { error: "Authentication Error: User not found." };
+    return { error: tServerActions("errors.auth_user_not_found") };
   }
 
   const review = await prisma.bookReview.findUnique({ where: { id, userId } });
   if (!review) {
     return {
-      error: "Review not found or you don't have permission to delete it.",
+      error: tServerActions("errors.review_not_found_or_unauthorized"),
     };
   }
 
   try {
     await prisma.bookReview.delete({ where: { id: id } });
+    revalidatePath(`/dashboard/books/reviews`);
+    return { success: tServerActions("success.review_deleted") };
   } catch (error) {
-    return { error: "Database Error: Failed to delete review." };
+    console.error("Database Error:", error);
+    return { error: tServerActions("errors.db_error_delete") };
   }
-
-  revalidatePath(`/dashboard/books/reviews`);
-  return { success: true };
 }

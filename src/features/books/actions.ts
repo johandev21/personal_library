@@ -2,29 +2,29 @@
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import {
-  bookCreateSchema,
-  BookCreateData,
-  BookUpdateData,
-  bookUpdateSchema,
-} from "./schemas";
+import { BookCreateData, BookUpdateData, getBookSchema } from "./schemas";
 import { getAuthenticatedUserId } from "../auth/actions";
+import { getTranslations } from "next-intl/server";
 
 export async function createBook(values: BookCreateData) {
+  const tServerActions = await getTranslations("Books.ServerActions");
+  const tSchemas = await getTranslations("Books.Validations");
+
   let userId;
   try {
     userId = await getAuthenticatedUserId();
   } catch (error) {
     if (error instanceof Error) {
-      return { error: `Authentication Error: ${error.message}` };
+      return { error: tServerActions("errors.auth_required") };
     }
-    return { error: "An unknown authentication error occurred." };
+    return { error: tServerActions("errors.auth_required") };
   }
 
-  const validatedFields = bookCreateSchema.safeParse(values);
+  const bookSchema = getBookSchema(tSchemas);
+  const validatedFields = bookSchema.safeParse(values);
 
   if (!validatedFields.success) {
-    return { error: "Invalid Fields." };
+    return { error: tServerActions("errors.invalid_fields") };
   }
 
   try {
@@ -34,21 +34,23 @@ export async function createBook(values: BookCreateData) {
         userId: userId!,
       },
     });
+    revalidatePath("/dashboard/books");
+    return { success: tServerActions("success.book_created") };
   } catch (error) {
     console.error("Database Error:", error);
-    return { error: "Database Error: Failed to create the book." };
+    return { error: tServerActions("errors.db_error_create") };
   }
-
-  revalidatePath("/dashboard/books");
-  return { success: true };
 }
 
 export async function updateBook(id: string, values: BookUpdateData) {
+  const tServerActions = await getTranslations("Books.ServerActions");
+  const tSchemas = await getTranslations("Books.Validations");
+
   let userId;
   try {
     userId = await getAuthenticatedUserId();
   } catch (error) {
-    return { error: "Authentication Error: User not found." };
+    return { error: tServerActions("errors.auth_user_not_found") };
   }
 
   const book = await prisma.book.findUnique({
@@ -56,12 +58,14 @@ export async function updateBook(id: string, values: BookUpdateData) {
   });
 
   if (!book) {
-    return { error: "Book not found or you don't have permission to edit it." };
+    return { error: tServerActions("errors.not_found_or_unauthorized") };
   }
 
-  const validatedFields = bookUpdateSchema.safeParse(values);
+  const bookSchema = getBookSchema(tSchemas);
+  const validatedFields = bookSchema.safeParse(values);
+
   if (!validatedFields.success) {
-    return { error: "Invalid fields." };
+    return { error: tServerActions("errors.invalid_fields") };
   }
 
   try {
@@ -69,22 +73,23 @@ export async function updateBook(id: string, values: BookUpdateData) {
       where: { id: id },
       data: validatedFields.data,
     });
+    revalidatePath(`/dashboard/books`);
+    revalidatePath(`/dashboard/books/${id}/edit`);
+    return { success: tServerActions("success.book_updated") };
   } catch (error) {
-    return { error: "Database Error: Failed to update book." };
+    console.error("Database Error:", error);
+    return { error: tServerActions("errors.db_error_update") };
   }
-
-  revalidatePath(`/dashboard/books`);
-  revalidatePath(`/dashboard/books/${id}/edit`);
-
-  return { success: true };
 }
 
 export async function deleteBook(id: string) {
+  const tServerActions = await getTranslations("Books.ServerActions");
+
   let userId;
   try {
     userId = await getAuthenticatedUserId();
   } catch (error) {
-    return { error: "Authentication Error: User not found." };
+    return { error: tServerActions("errors.auth_user_not_found") };
   }
 
   const book = await prisma.book.findUnique({
@@ -92,7 +97,7 @@ export async function deleteBook(id: string) {
   });
 
   if (!book) {
-    return { error: "Book not found or you don't have permission to edit it." };
+    return { error: tServerActions("errors.not_found_or_unauthorized") };
   }
 
   try {
@@ -101,11 +106,10 @@ export async function deleteBook(id: string) {
         id: id,
       },
     });
+    revalidatePath(`/dashboard/books`);
+    return { success: tServerActions("success.book_deleted") };
   } catch (error) {
-    return { error: "Database Error: Failed to delete note." };
+    console.error("Database Error:", error);
+    return { error: tServerActions("errors.db_error_delete") };
   }
-
-  revalidatePath(`/dashboard/books`);
-
-  return { success: true };
 }

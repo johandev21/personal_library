@@ -158,6 +158,29 @@
       "more_options_label": "Más opciones",
       "edit_action_label": "Editar",
       "delete_action_label": "Eliminar"
+    },
+    "ServerActions": {
+      "errors": {
+        "auth_required": "Error de autenticación: Debes iniciar sesión para acceder a este recurso",
+        "auth_user_not_found": "Error de autenticación: Usuario no encontrado.",
+        "invalid_fields": "Campos inválidos.",
+        "db_error_create": "Error de base de datos: No se pudo crear el libro.",
+        "db_error_update": "Error de base de datos: No se pudo actualizar el libro.",
+        "db_error_delete": "Error de base de datos: No se pudo eliminar el libro.",
+        "not_found_or_unauthorized": "Libro no encontrado o no tienes permiso para editarlo."
+      },
+      "success": {
+        "book_created": "Libro creado exitosamente",
+        "book_updated": "Libro actualizado exitosamente",
+        "book_deleted": "Libro eliminado exitosamente"
+      }
+    },
+    "Validations": {
+      "title_min": "El título debe tener al menos 2 caracteres.",
+      "author_min": "El autor debe tener al menos 2 caracteres.",
+      "cover_url_invalid": "Por favor, introduce una URL de imagen válida.",
+      "rating_min": "La calificación debe ser de al menos 1.",
+      "rating_max": "La calificación debe ser como máximo de 5."
     }
   },
   "Reviews": {
@@ -208,6 +231,26 @@
     "editing_review_for_label": "Estás editando tu reseña para:",
     "updating_button": "Actualizando...",
     "update_review_button": "Actualizar Reseña",
-    "review_updated_success_toast": "¡Reseña actualizada con éxito!"
+    "review_updated_success_toast": "¡Reseña actualizada con éxito!",
+    "ServerActions": {
+      "errors": {
+        "book_not_found_or_unauthorized_to_review": "Libro no encontrado o no tienes permiso para reseñarlo.",
+        "existing_review": "Ya has enviado una reseña para este libro.",
+        "db_error_create": "Error de base de datos: No se pudo crear la reseña.",
+        "db_error_update": "Error de base de datos: No se pudo actualizar la reseña.",
+        "review_not_found_or_unauthorized": "Reseña no encontrada o no tienes permiso para editarla.",
+        "db_error_delete": "Error de base de datos: No se pudo eliminar la reseña."
+      },
+      "success": {
+        "review_created": "Reseña creada exitosamente",
+        "review_updated": "Reseña actualizada exitosamente",
+        "review_deleted": "Reseña eliminada exitosamente"
+      }
+    },
+    "Validations": {
+      "title_min": "El título debe tener al menos 3 caracteres.",
+      "content_min": "El contenido de la reseña debe tener al menos 10 caracteres.",
+      "book_id_invalid": "ID de libro inválido."
+    }
   }
 }

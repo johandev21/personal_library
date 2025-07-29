@@ -36,9 +36,12 @@ export function BookReviewEditForm({ review }: BookReviewEditFormProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const t = useTranslations("Reviews");
+  const tValidations = useTranslations("Reviews.Validations");
+
+  const schema = reviewUpdateSchema(tValidations);
 
   const form = useForm<ReviewUpdateData>({
-    resolver: zodResolver(reviewUpdateSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       title: review.title,
       content: review.content,

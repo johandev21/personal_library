@@ -17,6 +17,7 @@ import {
 import { ModeToggle } from "./mode-toggle";
 import { Link, redirect } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
+import LocaleSwitcher from "./LocaleSwitcher";
 
 const getNavigationLinks = async () => {
   const t = await getTranslations("Header.nav_links");
@@ -109,6 +110,7 @@ export default async function Header() {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2"></div>
           <ModeToggle />
+          <LocaleSwitcher />
           <UserMenu session={session} />
         </div>
       </div>

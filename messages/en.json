@@ -154,6 +154,29 @@
       "more_options_label": "More options",
       "edit_action_label": "Edit",
       "delete_action_label": "Delete"
+    },
+    "ServerActions": {
+      "errors": {
+        "auth_required": "Authentication Error: You must be logged in to access this resource",
+        "auth_user_not_found": "Authentication Error: User not found.",
+        "invalid_fields": "Invalid Fields.",
+        "db_error_create": "Database Error: Failed to create the book.",
+        "db_error_update": "Database Error: Failed to update book.",
+        "db_error_delete": "Database Error: Failed to delete book.",
+        "not_found_or_unauthorized": "Book not found or you don't have permission to edit it."
+      },
+      "success": {
+        "book_created": "Book created successfully",
+        "book_updated": "Book updated successfully",
+        "book_deleted": "Book deleted successfully"
+      }
+    },
+    "Validations": {
+      "title_min": "Title must be at least 2 characters.",
+      "author_min": "Author must be at least 2 characters.",
+      "cover_url_invalid": "Please enter a valid image URL.",
+      "rating_min": "Rating must be at least 1.",
+      "rating_max": "Rating must be at most 5."
     }
   },
   "Reviews": {
@@ -204,6 +227,26 @@
     "editing_review_for_label": "You are editing your review for:",
     "updating_button": "Updating...",
     "update_review_button": "Update Review",
-    "review_updated_success_toast": "Review updated successfully!"
+    "review_updated_success_toast": "Review updated successfully!",
+    "ServerActions": {
+      "errors": {
+        "book_not_found_or_unauthorized_to_review": "Book not found or you don't have permission to review it.",
+        "existing_review": "You have already submitted a review for this book.",
+        "db_error_create": "Database Error: Failed to create the review.",
+        "db_error_update": "Database Error: Failed to update review.",
+        "review_not_found_or_unauthorized": "Review not found or you don't have permission to edit it.",
+        "db_error_delete": "Database Error: Failed to delete review."
+      },
+      "success": {
+        "review_created": "Review created successfully",
+        "review_updated": "Review updated successfully",
+        "review_deleted": "Review deleted successfully"
+      }
+    },
+    "Validations": {
+      "title_min": "Title must be at least 3 characters.",
+      "content_min": "Review content must be at least 10 characters.",
+      "book_id_invalid": "Invalid book ID."
+    }
   }
 }

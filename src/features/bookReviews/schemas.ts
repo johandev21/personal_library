@@ -1,22 +1,29 @@
 import { z } from "zod";
 
-export const reviewSchema = z.object({
-  title: z.string().min(3, {
-    message: "Title must be at least 3 characters.",
-  }),
-  content: z.string().min(10, {
-    message: "Review content must be at least 10 characters.",
-  }),
-  bookId: z.cuid({ message: "Invalid book ID." }),
-});
+export const getReviewCreateSchema = (t: (key: string) => string) => {
+  return z.object({
+    title: z.string().min(3, {
+      message: t("title_min"),
+    }),
+    content: z.string().min(10, {
+      message: t("content_min"),
+    }),
+    bookId: z.cuid({ message: t("book_id_invalid") }),
+  });
+};
 
-export const reviewCreateSchema = reviewSchema;
-export type ReviewCreateData = z.infer<typeof reviewCreateSchema>;
+export const getReviewUpdateSchema = (t: (key: string) => string) => {
+  return z.object({
+    title: z.string().min(3, { message: t("title_min") }),
+    content: z.string().min(10, { message: t("content_min") }),
+  });
+};
 
-export const reviewUpdateSchema = z.object({
-  title: z.string().min(3, { message: "Title must be at least 3 characters." }),
-  content: z
-    .string()
-    .min(10, { message: "Review content must be at least 10 characters." }),
-});
-export type ReviewUpdateData = z.infer<typeof reviewUpdateSchema>;
+const baseCreateSchema = getReviewCreateSchema(() => "");
+export type ReviewCreateData = z.infer<typeof baseCreateSchema>;
+
+const baseUpdateSchema = getReviewUpdateSchema(() => "");
+export type ReviewUpdateData = z.infer<typeof baseUpdateSchema>;
+
+export const reviewCreateSchema = getReviewCreateSchema;
+export const reviewUpdateSchema = getReviewUpdateSchema;

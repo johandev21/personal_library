@@ -41,9 +41,12 @@ export function BookReviewCreateForm({
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const t = useTranslations("Reviews");
+  const tValidations = useTranslations("Reviews.Validations");
+
+  const schema = reviewCreateSchema(tValidations);
 
   const form = useForm<ReviewCreateData>({
-    resolver: zodResolver(reviewCreateSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       title: "",
       content: "",
@@ -87,9 +90,7 @@ export function BookReviewCreateForm({
                   ))}
                 </SelectContent>
               </Select>
-              <FormDescription>
-                {t("review_description_read")}
-              </FormDescription>
+              <FormDescription>{t("review_description_read")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -103,10 +104,7 @@ export function BookReviewCreateForm({
             <FormItem>
               <FormLabel>{t("review_title_label")}</FormLabel>
               <FormControl>
-                <Input
-                  placeholder={t("review_title_placeholder")}
-                  {...field}
-                />
+                <Input placeholder={t("review_title_placeholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

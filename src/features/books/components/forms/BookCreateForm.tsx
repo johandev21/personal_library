@@ -35,9 +35,12 @@ export function BookCreateForm() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const t = useTranslations("Books.form");
+  const tValidations = useTranslations("Books.Validations");
+
+  const schema = bookCreateSchema(tValidations);
 
   const form = useForm({
-    resolver: zodResolver(bookCreateSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       title: "",
       author: "",
@@ -55,7 +58,6 @@ export function BookCreateForm() {
       if (result?.error) {
         toast.error(result.error);
       } else {
-        // Access the create success toast using 't'
         toast.success(t("success_toast_create"));
         router.push("/dashboard/books");
       }
