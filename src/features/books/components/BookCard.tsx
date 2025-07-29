@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { MoreHorizontal, Edit } from "lucide-react";
-import Link from "next/link";
 import { Book } from "@/generated/prisma/client";
 
 import { Badge } from "@/components/ui/badge";
@@ -24,6 +23,7 @@ import { StarRating } from "./StarRating";
 import { DeleteBookDialog } from "./DeleteBookDialog";
 import NoCoverFound from "@/public/no-cover.png";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 interface BookCardProps {
   book: Book;

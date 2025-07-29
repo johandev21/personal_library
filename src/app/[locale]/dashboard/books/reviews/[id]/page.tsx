@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Edit } from "lucide-react";
@@ -8,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { getReviewById } from "@/features/bookReviews/queries";
 import { formatDateTime } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
 export default async function ReviewDetailPage({
   params,

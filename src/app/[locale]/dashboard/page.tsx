@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { headers } from "next/headers";
 import { ArrowRight, BookPlus, MessageSquarePlus } from "lucide-react";
@@ -11,6 +10,7 @@ import { getBooks } from "@/features/books/queries";
 import { getBookReviews } from "@/features/bookReviews/queries";
 import { DashboardStats } from "@/components/DashboardStats";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({ headers: await headers() });

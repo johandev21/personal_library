@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Suspense } from "react";
 import { Plus } from "lucide-react";
 
@@ -6,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ReviewsListSkeleton } from "@/features/bookReviews/components/skeletons/ReviewsListSkeleton";
 import { ListReviews } from "@/features/bookReviews/components/ListReviews";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
 export default async function BookReviewsPage() {
   const t = await getTranslations("Reviews");

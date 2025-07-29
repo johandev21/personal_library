@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { PlusCircle } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
@@ -9,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { BookFilters } from "@/features/books/components/BookFilters";
 import type { BookStates } from "@/generated/prisma/client";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 interface BookToolbarProps {
   allTags: string[];

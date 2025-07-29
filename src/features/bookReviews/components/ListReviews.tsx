@@ -1,10 +1,10 @@
-import Link from "next/link";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { getBookReviews } from "@/features/bookReviews/queries";
 import { BookReviewCard } from "./ReviewCard";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
 export async function ListReviews() {
   const reviews = await getBookReviews();

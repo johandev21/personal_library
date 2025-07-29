@@ -16,10 +16,10 @@ import {
 
 import { StarRating } from "./StarRating";
 import { Book } from "@/generated/prisma/client";
-import Link from "next/link";
 import { DeleteBookDialog } from "./DeleteBookDialog";
 import NoCoverFound from "@/public/no-cover.png";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 interface BookListItemProps {
   book: Book;

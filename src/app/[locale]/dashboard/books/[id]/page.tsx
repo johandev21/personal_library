@@ -5,10 +5,10 @@ import { DeleteBookDialog } from "@/features/books/components/DeleteBookDialog";
 import { getBookById } from "@/features/books/queries";
 import { ArrowLeft, Edit } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import NoCoverFound from "@/public/no-cover.png";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
 export default async function DetailBookRoute({
   params,

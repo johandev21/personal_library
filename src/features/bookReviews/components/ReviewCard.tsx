@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { MoreVertical, Edit, Trash2, Book } from "lucide-react";
 
 import {
@@ -23,6 +22,7 @@ import { DeleteReviewDialog } from "./DeleteReviewDialog";
 import { ReviewWithBook } from "../types";
 import { formatDateTime } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 interface BookReviewCardProps {
   review: ReviewWithBook;
