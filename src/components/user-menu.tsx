@@ -1,7 +1,6 @@
 "use client";
 
 import { LogOutIcon } from "lucide-react";
-import { useRouter } from '@/i18n/navigation';
 import { authClient } from "@/lib/auth-client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -15,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTranslations } from "next-intl";
+import { Link, useRouter } from "@/i18n/navigation";
 
 interface Session {
   user: {
@@ -29,16 +29,28 @@ interface UserMenuProps {
   session: Session | null;
 }
 
-export default function UserMenu({ session }: UserMenuProps) {
+export default function UserMenu() {
   const router = useRouter();
-  const t = useTranslations("UserMenu"); 
+
+  const tHeader = useTranslations("Header");
+  const tUserMenu = useTranslations("UserMenu");
+
+  const { data: session, isPending } = authClient.useSession();
+
+  if (isPending) {
+    return <div className="rounded-full size-8 bg-accent animate-pulse"></div>;
+  }
 
   if (!session) {
-    return null;
+    return (
+      <Link href={'/login'}>
+        <Button>{tHeader('signin_btn')}</Button>
+      </Link>
+    );
   }
 
   const { user } = session;
-  const userName = user.name || t("fallback_name");
+  const userName = user.name || tUserMenu("fallback_name");
   const userEmail = user.email || "";
   const userImage = user.image || "";
 
@@ -53,10 +65,12 @@ export default function UserMenu({ session }: UserMenuProps) {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          router.push("/signin");
+          router.refresh();
+          router.push("/login");
         },
         onError: (error) => {
-          alert(`Failed to sign out. ${error}`);
+          console.error("Sign out error:", error);
+          alert("Failed to sign out. Please try again.");
         },
       },
     });
@@ -90,7 +104,7 @@ export default function UserMenu({ session }: UserMenuProps) {
           className="cursor-pointer"
         >
           <LogOutIcon className="mr-2 h-4 w-4" />
-          <span>{t("logout_label")}</span>
+          <span>{tUserMenu("logout_label")}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -5,7 +5,8 @@
       "books": "Books",
       "reviews": "Reviews"
     },
-    "signin_redirect": "Sign in"
+    "signin_redirect": "Sign in",
+    "signin_btn": "Sign in"
   },
   "ModeToggle": {
     "toggle_theme_label": "Toggle theme",
@@ -49,32 +50,113 @@
     "no_reviews_written": "No reviews written yet."
   },
   "Auth": {
-    "Login": {
-      "title": "Login to your account",
-      "description": "Enter your email below to login to your account",
+    "SignIn": {
+      "title": "Welcome back",
+      "description": "Login with your GitHub, Google, or email account",
+      "github_button": "Login with GitHub",
+      "google_button": "Login with Google",
+      "or_continue_with": "Or continue with",
       "email_label": "Email",
       "email_placeholder": "m@example.com",
       "password_label": "Password",
       "forgot_password_link": "Forgot your password?",
-      "logging_in_button": "Logging in...",
       "login_button": "Login",
+      "unexpected_error_toast": "An unexpected error occurred. Please try again.",
       "no_account_prompt": "Don't have an account?",
-      "signup_link": "Sign up"
+      "signup_link": "Sign up",
+      "Validations": {
+        "email_invalid": "Please enter a valid email address.",
+        "password_required": "Password is required.",
+        "password_min": "Password must be at least 8 characters long."
+      }
     },
-    "Signup": {
-      "title": "Create an account",
-      "description": "Enter your details below to create your account",
-      "name_label": "Name",
-      "name_placeholder": "John Doe",
+    "SignUp": {
+      "title": "Create your account",
+      "description": "Sign up with GitHub, Google, or your email",
+      "github_button": "Sign up with GitHub",
+      "google_button": "Sign up with Google",
+      "or_continue_with": "Or continue with",
+      "username_label": "Username",
+      "username_placeholder": "johndoe",
       "email_label": "Email",
       "email_placeholder": "m@example.com",
       "password_label": "Password",
       "confirm_password_label": "Confirm Password",
-      "creating_account_button": "Creating Account...",
-      "create_account_button": "Create Account",
+      "creating_account_button": "Creating Account",
+      "unexpected_error_toast": "An unexpected error occurred. Please try again.",
       "already_have_account_prompt": "Already have an account?",
-      "signin_link": "Sign In",
-      "success_toast": "Account created! Please sign in to continue."
+      "signin_link": "Sign in",
+      "Validations": {
+        "name_min": "Username must be at least 2 characters.",
+        "name_max": "Username must not exceed 50 characters.",
+        "email_invalid": "Please enter a valid email address.",
+        "password_min": "Password must be at least 8 characters long.",
+        "password_uppercase": "Password must contain at least one uppercase letter.",
+        "password_lowercase": "Password must contain at least one lowercase letter.",
+        "password_digit": "Password must contain at least one number.",
+        "password_alphanumeric": "Password can only contain letters and numbers.",
+        "confirm_password_required": "Please confirm your password.",
+        "passwords_do_not_match": "Passwords do not match."
+      }
+    },
+    "ServerActions": {
+      "errors": {
+        "not_logged_in": "You must be logged in to access this resource",
+        "invalid_fields": "Invalid fields.",
+        "unknown_signup_error": "An unknown error occurred during sign-up.",
+        "unknown_signin_error": "An unknown error occurred during sign-in."
+      },
+      "success": {
+        "signup_account_created": "Account created, please check your email to verify your account",
+        "signin_success": "Successfully logged in!"
+      }
+    },
+    "ForgotPassword": {
+      "title": "Forgot Password",
+      "description": "Enter your email to reset your password",
+      "email_label": "Email",
+      "email_placeholder": "m@example.com",
+      "reset_password_button": "Reset Password",
+      "password_reset_email_sent_toast": "Password reset email sent",
+      "no_account_prompt": "Don't have an account?",
+      "signup_link": "Sign up",
+      "terms_and_conditions_prefix": "By clicking continue, you agree to our",
+      "terms_of_service_link": "Terms of Service",
+      "privacy_policy_link": "Privacy Policy"
+    },
+    "ResetPassword": {
+      "title": "Reset Password",
+      "description": "Enter your new password",
+      "password_label": "Password",
+      "confirm_password_label": "Confirm Password",
+      "passwords_do_not_match_error": "Passwords do not match",
+      "password_reset_successfully_toast": "Password reset successfully",
+      "no_account_prompt": "Don't have an account?",
+      "signup_link": "Sign up",
+      "reset_password_button": "Reset Password"
+    },
+    "Emails": {
+      "ResetPassword": {
+        "preview": "Reset your password - Action required",
+        "header_title": "Reset Your Password",
+        "header_subtitle": "We received a request to reset your password",
+        "greeting": "Hello, {username}",
+        "instruction_paragraph1": "We received a password reset request for your account associated with",
+        "instruction_paragraph2": "Click the button below to create a new password. This link will expire in 24 hours for security reasons.",
+        "reset_password_button": "Reset Password",
+        "alternative_link_text": "If the button doesn't work, copy and paste this link into your browser:",
+        "security_notice_title": "Security Notice:",
+        "security_notice_item1": "If you didn't request this password reset, please ignore this email",
+        "security_notice_item2": "This link will expire in 24 hours",
+        "security_notice_item3": "For security, never share this link with anyone",
+        "help_text": "Need help? Contact our support team at",
+        "support_email": "support@company.com",
+        "sent_to_email_footer": "This email was sent to {userEmail}",
+        "company_address_footer": "Company Name, 123 Business Street, City, State 12345",
+        "copyright_footer": "© 2025 Company Name. All rights reserved.",
+        "unsubscribe_link": "Unsubscribe"
+      },
+      "VerifyEmail": {}
     }
   },
   "Books": {

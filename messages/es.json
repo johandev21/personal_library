@@ -5,7 +5,8 @@
       "books": "Libros",
       "reviews": "Reseñas"
     },
-    "signin_redirect": "Iniciar sesión"
+    "signin_redirect": "Iniciar sesión",
+    "signin_btn": "Inicia sesión"
   },
   "ModeToggle": {
     "toggle_theme_label": "Cambiar tema",
@@ -53,32 +54,113 @@
     "no_reviews_written": "Aún no has escrito reseñas."
   },
   "Auth": {
-    "Login": {
-      "title": "Inicia sesión en tu cuenta",
-      "description": "Introduce tu correo electrónico a continuación para iniciar sesión en tu cuenta",
+    "SignIn": {
+      "title": "Bienvenido de vuelta",
+      "description": "Inicia sesión con tu cuenta de GitHub, Google o correo electrónico",
+      "github_button": "Iniciar sesión con GitHub",
+      "google_button": "Iniciar sesión con Google",
+      "or_continue_with": "O continúa con",
       "email_label": "Correo electrónico",
       "email_placeholder": "m@ejemplo.com",
       "password_label": "Contraseña",
       "forgot_password_link": "¿Olvidaste tu contraseña?",
-      "logging_in_button": "Iniciando sesión...",
       "login_button": "Iniciar sesión",
+      "unexpected_error_toast": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo.",
       "no_account_prompt": "¿No tienes cuenta?",
-      "signup_link": "Regístrate"
+      "signup_link": "Regístrate",
+      "Validations": {
+        "email_invalid": "Por favor, introduce una dirección de correo electrónico válida.",
+        "password_required": "La contraseña es obligatoria.",
+        "password_min": "La contraseña debe tener al menos 8 caracteres."
+      }
     },
-    "Signup": {
-      "title": "Crear una cuenta",
-      "description": "Introduce tus datos a continuación para crear tu cuenta",
-      "name_label": "Nombre",
-      "name_placeholder": "Juan Pérez",
+    "SignUp": {
+      "title": "Crea tu cuenta",
+      "description": "Regístrate con tu cuenta de GitHub, Google o correo electrónico",
+      "github_button": "Regístrate con GitHub",
+      "google_button": "Regístrate con Google",
+      "or_continue_with": "O continúa con",
+      "username_label": "Nombre de usuario",
+      "username_placeholder": "johndoe",
       "email_label": "Correo electrónico",
       "email_placeholder": "m@ejemplo.com",
       "password_label": "Contraseña",
       "confirm_password_label": "Confirmar contraseña",
-      "creating_account_button": "Creando cuenta...",
-      "create_account_button": "Crear cuenta",
+      "creating_account_button": "Crear cuenta",
+      "unexpected_error_toast": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo.",
       "already_have_account_prompt": "¿Ya tienes una cuenta?",
       "signin_link": "Iniciar sesión",
-      "success_toast": "¡Cuenta creada! Por favor, inicia sesión para continuar."
+      "Validations": {
+        "name_min": "El nombre de usuario debe tener al menos 2 caracteres.",
+        "name_max": "El nombre de usuario no debe exceder los 50 caracteres.",
+        "email_invalid": "Por favor, introduce una dirección de correo electrónico válida.",
+        "password_min": "La contraseña debe tener al menos 8 caracteres.",
+        "password_uppercase": "La contraseña debe contener al menos una letra mayúscula.",
+        "password_lowercase": "La contraseña debe contener al menos una letra minúscula.",
+        "password_digit": "La contraseña debe contener al menos un número.",
+        "password_alphanumeric": "La contraseña solo puede contener letras y números.",
+        "confirm_password_required": "Por favor, confirma tu contraseña.",
+        "passwords_do_not_match": "Las contraseñas no coinciden."
+      }
+    },
+    "ServerActions": {
+      "errors": {
+        "not_logged_in": "Debes iniciar sesión para acceder a este recurso",
+        "invalid_fields": "Campos inválidos.",
+        "unknown_signup_error": "Ocurrió un error desconocido durante el registro.",
+        "unknown_signin_error": "Ocurrió un error desconocido durante el inicio de sesión."
+      },
+      "success": {
+        "signup_account_created": "Cuenta creada, por favor revisa tu correo electrónico para verificar tu cuenta",
+        "signin_success": "¡Has iniciado sesión correctamente!"
+      }
+    },
+    "ForgotPassword": {
+      "title": "Olvidaste tu contraseña",
+      "description": "Introduce tu correo electrónico para restablecer tu contraseña",
+      "email_label": "Correo electrónico",
+      "email_placeholder": "m@ejemplo.com",
+      "reset_password_button": "Restablecer contraseña",
+      "password_reset_email_sent_toast": "Correo electrónico de restablecimiento de contraseña enviado",
+      "no_account_prompt": "¿No tienes cuenta?",
+      "signup_link": "Regístrate",
+      "terms_and_conditions_prefix": "Al hacer clic en continuar, aceptas nuestros",
+      "terms_of_service_link": "Términos de Servicio",
+      "privacy_policy_link": "Política de Privacidad"
+    },
+    "ResetPassword": {
+      "title": "Restablecer contraseña",
+      "description": "Introduce tu nueva contraseña",
+      "password_label": "Contraseña",
+      "confirm_password_label": "Confirmar contraseña",
+      "passwords_do_not_match_error": "Las contraseñas no coinciden",
+      "password_reset_successfully_toast": "Contraseña restablecida con éxito",
+      "no_account_prompt": "¿No tienes cuenta?",
+      "signup_link": "Regístrate",
+      "reset_password_button": "Restablecer contraseña"
+    },
+    "Emails": {
+      "ResetPassword": {
+        "preview": "Restablece tu contraseña - Acción requerida",
+        "header_title": "Restablece tu contraseña",
+        "header_subtitle": "Recibimos una solicitud para restablecer tu contraseña",
+        "greeting": "Hola, {username}",
+        "instruction_paragraph1": "Recibimos una solicitud de restablecimiento de contraseña para tu cuenta asociada con",
+        "instruction_paragraph2": "Haz clic en el botón de abajo para crear una nueva contraseña. Este enlace expirará en 24 horas por motivos de seguridad.",
+        "reset_password_button": "Restablecer contraseña",
+        "alternative_link_text": "Si el botón no funciona, copia y pega este enlace en tu navegador:",
+        "security_notice_title": "Aviso de seguridad:",
+        "security_notice_item1": "Si no solicitaste este restablecimiento de contraseña, ignora este correo electrónico",
+        "security_notice_item2": "Este enlace expirará en 24 horas",
+        "security_notice_item3": "Por seguridad, nunca compartas este enlace con nadie",
+        "help_text": "¿Necesitas ayuda? Contacta a nuestro equipo de soporte en",
+        "support_email": "soporte@empresa.com",
+        "sent_to_email_footer": "Este correo electrónico se envió a {userEmail}",
+        "company_address_footer": "Nombre de la Empresa, 123 Business Street, Ciudad, Estado 12345",
+        "copyright_footer": "© 2025 Nombre de la Empresa. Todos los derechos reservados.",
+        "unsubscribe_link": "Darse de baja"
+      },
+      "VerifyEmail": {}
     }
   },
   "Books": {

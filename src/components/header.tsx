@@ -18,6 +18,7 @@ import { ModeToggle } from "./mode-toggle";
 import { Link, redirect } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import LocaleSwitcher from "./LocaleSwitcher";
+import { verifySession } from "@/lib/verify-session";
 
 const getNavigationLinks = async () => {
   const t = await getTranslations("Header.nav_links");
@@ -29,11 +30,7 @@ const getNavigationLinks = async () => {
 };
 
 export default async function Header() {
-  const session = await auth.api.getSession({ headers: await headers() });
-
-  if (!session) {
-    redirect({ href: "/signin", locale: "en" });
-  }
+  await verifySession();
 
   const navigationLinks = await getNavigationLinks();
 
@@ -111,7 +108,7 @@ export default async function Header() {
           <div className="flex items-center gap-2"></div>
           <ModeToggle />
           <LocaleSwitcher />
-          <UserMenu session={session} />
+          <UserMenu />
         </div>
       </div>
     </header>

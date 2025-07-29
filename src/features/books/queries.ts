@@ -48,7 +48,7 @@ export const getFilteredBooks = async (
 ): Promise<Book[]> => {
   try {
     const userId = await getAuthenticatedUserId();
-    const where = buildWhereClause(userId, filters);
+    const where = buildWhereClause(userId as string, filters);
 
     return await prisma.book.findMany({
       where,
@@ -67,7 +67,7 @@ export const getBooksTotalPages = async (
 ): Promise<number> => {
   try {
     const userId = await getAuthenticatedUserId();
-    const where = buildWhereClause(userId, filters);
+    const where = buildWhereClause(userId as string, filters);
 
     const count = await prisma.book.count({ where });
 

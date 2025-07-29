@@ -5,7 +5,6 @@ import { ReviewWithBook } from "./types";
 export const getBookReviews = async (): Promise<ReviewWithBook[]> => {
   try {
     const userId = await getAuthenticatedUserId();
-
     return await prisma.bookReview.findMany({
       where: {
         userId,
@@ -19,7 +18,9 @@ export const getBookReviews = async (): Promise<ReviewWithBook[]> => {
   }
 };
 
-export async function getReviewById(id: string): Promise<ReviewWithBook | null> {
+export async function getReviewById(
+  id: string
+): Promise<ReviewWithBook | null> {
   try {
     const userId = await getAuthenticatedUserId();
     const bookReview = await prisma.bookReview.findUnique({
@@ -34,4 +35,4 @@ export async function getReviewById(id: string): Promise<ReviewWithBook | null> 
     console.error("Failed to fetch book review:", error);
     return null;
   }
-};
+}
